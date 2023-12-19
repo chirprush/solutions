@@ -1,0 +1,168 @@
+\documentclass[12pt]{article}
+
+\usepackage{chirpstyle}
+\usepackage{inconsolata}
+
+\usepackage{verbatim}
+
+\begin{document}
+
+\section*{USACO 2023 Bronze Problems}
+
+USACO doesn't let us access the problems again until the results are being processed or something so bear with me through this :(
+
+\begin{problemnum}[Candy Canes]
+    This one is sort of implementation.
+
+    Right away from the problem description, we see that after each round of
+    cows, the candy cane is thrown away, so we can safely just loop through all
+    the candy canes and then go through the rounds of cows. We'll have a
+    variable keeping track of the height of the candy cane and increment it accordingly based on however much a cow eats.
+
+    Notice that the amount the cow eats is the minimum between the length of
+    the cane and the difference between the height of the cow and the height of
+    the cane (in other words, the cow can only eat as much as there is in the
+    cane, and it will eat as tall as it can go).
+
+    We can then add this eaten amount to the height of the cane, the height of
+    the cow, and we will subtract it from the length of the cane.
+
+    One remark is, if you simply iterate through the cows (replacing the inner
+    while loop with a for loop), you run out of time, so make sure to keep
+    early exit in mind.
+
+    \verbatiminput{../problem1/main.cpp}
+
+    Perhaps there's a smarter implementation of this, but it gets the job done so yay.
+\end{problemnum}
+
+\begin{problemnum}[Cowntact Tracing]
+    Frick problem 2 all my homies hate problem 2.
+
+    Okay so this is actually just going to be a half solution because I only got half of the test cases to work, and I don't exactly know why (hopefully Joseph tells me where I'm being dumb). Also, my solution method and code are actually garbage, so whoo boy buckle up.
+
+    A natural simplification to the problem is to group up the blocks of 1's
+    and instead store their length. In addition, we'll consider blocks in the
+    middle and blocks at the ends to be separate, because they sort of behave
+    differently.
+
+    There's probably a way to do this without considering the number of days,
+    but I tried doing it this way anyway. Let's consider the middle blocks
+    first, which we'll denote the lengths of (if existing) as \( m_1, m_2,
+    \ldots, m_n \). No matter what, these will grow by \( 2 \) each day, so the
+    maximum number of days they could have grown for is \( \lfloor (m_i - 1) /
+    2 \rfloor \) (if its an even length it will have started out at \( 2 \),
+    and if its an odd length it will have started out at \( 1 \)). If we take
+    the minimum of all of these middle maximum possible days, we get the
+    maximum possible number of days that the entire middle section could have
+    grown for:
+    \[
+        d_{\textrm{mids}} = \min_{i} \left\lfloor \frac{m_i - 1}{2} \right\rfloor
+    .\]
+    Now let's consider the ends, which are slightly different. Let us denote the length of the ends (if existing) by \( e_1, e_2 \). The maximum
+    number of days they could have grown for is one less than their length
+    (this case is achieved by putting the 1 at the very end at the start):
+    \[
+        d_{\textrm{ends}} = \min{\left\{ e_1 - 1, e_2 - 1 \right\}}
+    .\]
+    Taking the minimum of the two, we achieve the maximum feasible number of
+    days that the virus could have grown for.
+    \[
+        d = \min{\left\{ d_{\textrm{mids}}, d_{\textrm{ends}} \right\}}
+    .\]
+    It makes intuitive sense that, by maximizing the number of days, we
+    minimize the number of cows (actually I also tested out trying every time
+    up to it as well and taking the minimum cows, but that also didn't work so
+    I am very sad).
+
+    For the middle blocks, the number of cows that existed at the start before the \( d \) days is going to be \( m_i - 2d \) (because the middle ones grow by \( 2 \) everyday).
+
+    For the end blocks, one can work out that the number of cows that need to be placed is\footnote{Probably. Then again I could have also gotten this very wrong because half of the test cases were wrong :(} \( \lceil e_i/(2d+1) \rceil \).
+
+    Combining these, our final answer should be
+    \[
+        S = \lceil e_1/(2d+1) \rceil + \lceil e_2/(2d+1) \rceil + \sum_{i} (m_i - 2d)
+    .\]
+    But yeah idk. Also yeah don't entirely trust the names I give to my variables when coding.
+
+    \verbatiminput{../problem2/main.cpp}
+\end{problemnum}
+
+\begin{problemnum}[Farmer John Actually Farms]
+    Actually this problem was a pretty fun one. I also remember it more so I'll
+    give a rough description of the problem. We have \( N \) being the number
+    of plants, \( h = [h_0, h_1, \ldots, h_{N-1}] \) being the heights of each
+    respective plant, \( a = [a_0, a_1, \ldots, a_{N-1}] \) being the growth
+    rates of each plant, and \( t = [t_0, t_1, \ldots, t_{N-1}] \) being the
+    number of plants that Farmer John wants to be taller than the respective
+    plant (basically the sorting of the plants).
+
+    Each plant grows by its growth rate every day and we want to find out if
+    the configuration of tallest to shortest that Farmer John asks us for is
+    possible or not and, if so, return the minimum number of days for it to
+    be achieved.
+
+    The first thing that we must do to make our lives a ton easier is construct
+    an index mapping that lets us go from the sorted indices to the unsorted
+    indices of plants that are given to us. In other words, let \( I \) be our
+    index map and \( I[t[i]] = i \).
+
+    The algorithm that we'll use will go from ordered indices \(
+    j=1,2,\ldots,N-1 \) and make sure that the plant at ordered index \( j-1 \)
+    (really at index \( I[j-1] \), but that's what I mean by ordered index) can
+    be greater than the plant at \( j \) after some number of days. By virtue
+    of comparing the previous plant to the current plant and incrementing the
+    index, we make sure that all plants with a greater index will be shorter.
+
+    The key insight is to realize that, in order to verify the condition that
+    the previous plant can outgrow the other, we have a very interesting linear
+    inequality. Let \( h_1 = h[I[j-1]], a_1 = a[I[j-1]] \) and \( h_2 = h[I[j]], a_2 = a[I[j]] \) (that is, \( h_1 \) and \( a_1 \) represent the height and growth rate of the previous plant which should be taller and the opposite holds for \( h_2 \) and \( a_2 \)). We have that
+    \[
+        h_1 + a_1 d > h_2 + a_2 d \iff d \left( a_1 - a_2 \right) > h_2 - h_1
+    .\]
+    For certain cases of heights and growth rates, the inequality flips and we
+    get a upper bound for the number of days. For some cases, it doesn't and we
+    get an lower bound. For other cases, we get no information. For some cases,
+    we get that the goal is impossible and we can exit out and print \( -1 \).
+    In this way, we can keep track of running lower and upper bounds for the
+    number of days it takes and at the end (if we get that it is a possible
+    configuration) we shall output the lower bound, which is the minimum number
+    of days it will take. It is now our job to go casewise and do some thinking.
+    \begin{enumerate}
+        \item Case \( a_2 \ge a_1 \) and \( h_2 \ge h_1 \). In this case, the previous plant can never outgrow the current one, so we can exit out saying that the configuration is impossible.
+        \item Case \( a_2 > a_1 \) and \( h_2 < h_1 \). In this case, the
+            inequality flips and we get an upper bound for the number of days. We have that
+            \[
+                d < \frac{h_2 - h_1}{a_1 - a_2}
+            ,\]
+            but because of the strict inequality, we get that the upper bound is
+            \[
+                d_{\textrm{upper}} = \left\lceil \frac{h_2 - h_1}{a_1 - a_2} \right\rceil - 1
+            .\]
+            We take the minimum of the current running upper bound and this and
+            update the running upper bound.
+        \item Case \( a_2 < a_1 \) and \( h_2 \ge h_1 \). In this case, the
+            inequality doesn't flip and we get a lower bound for the number of
+            days. We have that
+            \[
+                d > \frac{h_2 - h_1}{a_1 - a_2}
+            ,\]
+            and we take the strict inequality into account to get that the lower bound is
+            \[
+                d_{\textrm{lower}} = \left\lfloor \frac{h_2 - h_1}{a_1 - a_2} \right\rfloor + 1
+            .\]
+            We take the maximum of this with the running lower bound and update the running lower bound.
+        \item Otherwise, we gain no information
+    \end{enumerate}
+    After every change to the upper or lower bounds, we should also check that the upper bound is not less than the lower bound. If it is, we can exit early and say that the configuration is impossible.
+
+    As previously stated, if all goes well and there are no contradictions, we
+    may return the running lower bound value that achieves the minimum number
+    of days.
+
+    \verbatiminput{../problem3/main.cpp}
+\end{problemnum}
+
+Okay I am done now excuse all my missed punctuation and perhaps typos
+
+\end{document}
