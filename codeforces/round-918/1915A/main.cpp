@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <string>
 #include <map>
 #include <algorithm>
 #include <cmath>
@@ -24,5 +23,16 @@ void print_some(std::vector<T> &v) {
 }
 
 int main() {
+    int t;
+    std::cin >> t;
+
+    for (int _ = 0; _ < t; _++) {
+        int a, b, c;
+        std::cin >> a >> b >> c;
+
+        if (a == b) { std::cout << c << std::endl; }
+        if (b == c) { std::cout << a << std::endl; }
+        if (a == c) { std::cout << b << std::endl; }
+    }
     return 0;
 }

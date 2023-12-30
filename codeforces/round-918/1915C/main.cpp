@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <string>
 #include <map>
 #include <algorithm>
 #include <cmath>
@@ -24,5 +23,26 @@ void print_some(std::vector<T> &v) {
 }
 
 int main() {
+    int t;
+    std::cin >> t;
+
+    for (int _ = 0; _ < t; _++) {
+        int n;
+        ll sum = 0;
+        std::cin >> n;
+
+        for (int i = 0; i < n; i++) {
+            ll a;
+            std::cin >> a;
+            sum += a;
+        }
+
+        double S = std::sqrt(sum);
+        if (S - std::floor(S) > 0) {
+            std::cout << "NO" << std::endl;
+        } else {
+            std::cout << "YES" << std::endl;
+        }
+    }
     return 0;
 }
