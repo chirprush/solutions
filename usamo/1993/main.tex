@@ -1,0 +1,116 @@
+\documentclass[a4paper, 10pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{USAMO 1993 Solutions}
+
+Now that USAMTS is done for the year, I need a source of math problems, so past
+USAMO tests it is I suppose. Until I get a solution for the problems, it'll
+probably have a bunch of different solution paths and things that I'm trying
+out written down just to like document them. Once I solve the question, I'll probably clean up the solution.
+
+\begin{chirpbox}
+\begin{problemnum}
+    For each integer \( n \ge 2 \), determine, with proof, which of the two positive real numbers \( a \) and \( b \) satisfying
+    \[
+        a^n = a + 1, \quad b^{2n} = b + 3a
+    \]
+    is larger.
+\end{problemnum}
+\end{chirpbox}
+
+\begin{solution}
+    Going into this, I didn't really have a sense of the difficulty of the
+    questions, so I tried bounding the roots in terms of \( n \) before
+    realizing there was an almost trivial solution.
+    
+    \begin{claim}
+        For all \( n \ge 2 \), we have that \( b < a \).
+    \end{claim}
+    \begin{proof}
+        For convenience, let \( f(a) = a^n - a - 1 \) and \( g(b) = b^{2n} - b
+        - 3a \). By Descartes' rule of signs, one may verify that there exists
+        only one positive root of each these polynomials.
+
+        Notice that because \( a^n > a \) and \( b^{2n} > b \), we have that \(
+        a > 1 \) and \( b > 1 \), and that both \( f(a) \) and \( g(b) \) are
+        strictly increasing for \( a, b > 1 \).
+
+        We shall now bound the value of \( b \) between \( 1 \) and \( a \). Observe that
+        \begin{align*}
+            g(1) &= -3a < 0, \\
+            g(a) &= a^{2n} - 4a = (a + 1)^2 - 4a = (a-1)^2 > 0
+        .\end{align*}
+        By the intermediate value theorem, there must then exist some positive root of \( g(b) \) between \( 1 \) and \( a \), which is precisely \( b \).
+    \end{proof}
+\end{solution}
+
+\begin{chirpbox}
+\begin{problemnum}
+    Let \( ABCD \) be a convex quadrilateral such that diagonals \( AC \) and \( BD \) intersect at right angles, and let \( E \) be their intersection. Prove that the reflections of \( E \) across \( AB, BC, CD, DA \) are concyclic. 
+\end{problemnum}
+\end{chirpbox}
+
+\begin{chirpbox}
+\begin{problemnum}
+    Consider functions \( f : [0, 1] \to \mathbb{R} \) which satisfy
+    \begin{enumerate}
+        \item \( f(x) \ge 0 \) for all \( x \) in \( [0, 1] \),
+        \item \( f(1) = 1 \),
+        \item \( f(x) + f(y) \le f(x + y) \) whenever \( x, y \), and \( x + y \) are all in \( [0, 1] \).
+    \end{enumerate}
+    Find, with proof, the smallest constant \( c \) such that
+    \[
+        f(x) \le cx
+    \]
+    for every function \( f \) satisfying the above three conditions and every \( x \) in \( [0, 1] \).
+\end{problemnum}
+\end{chirpbox}
+
+\begin{solution}
+    From simply inspecting the problem and playing around with the equation, the answer appears right in one's face. Proving that it is the answer, as always, though, is not so obvious.
+    \begin{claim}
+        We claim that the value of the smallest constant \( c \) is \( 1 \).
+    \end{claim}
+    \begin{proof}
+        Suppose, for contradiction, that there existed some value \( t \) in \(
+        [0, 1] \) such that \( f(t) > ct = t \).
+    \end{proof}
+\end{solution}
+
+\begin{chirpbox}
+\begin{problemnum}
+    Let \( a, b \) be odd positive integers. Define the sequence \( (f_n) \) by
+    putting \( f_1 = a, f_2 = b, \) and by letting \( f_n \) for \( n \ge 3 \)
+    be the greatest odd divisor fo \( f_{n-1} + f_{n-2} \). Show that \( f_n \)
+    is constant for \( n \) sufficiently large and determine the eventual value
+    as a function of \( a \) and \( b \).
+\end{problemnum}
+\end{chirpbox}
+
+\begin{solution}
+    We shall denote the eventual value as \( g(a, b) \).
+    \begin{claim}
+        The eventual value \( g(a, b) \) is the \( \gcd{(a, b)} \).
+    \end{claim}
+    \begin{proof}
+        Let \( d \) denote denote \( \gcd{(a, b)} \). Notice that, because \( d
+        \mid a \) and \( d \mid b \), \( d \mid f_n \) for all \( n \). Thus,
+        the eventual value must be a multiple of \( d \).
+    \end{proof}
+    With this, finishing is now trivial.
+\end{solution}
+
+\begin{chirpbox}
+\begin{problemnum}
+    Let \( a_0, a_1, a_2, \ldots \) be a sequence of positive real numbers satisfying \( a_{i-1} a_{i+1} \le a_i^2 \) for \( i = 1, 2, 3, \ldots \). (Such a sequence is said to be \textit{log concave}). Show that for each \( n \ge 2 \),
+    \begin{align*}
+        &\frac{a_0 + a_1 + \cdots + a_n}{n+1} \cdot \frac{a_1 + a_2 + \cdots + a_{n-1}}{n-1} \ge \\
+        &\frac{a_0 + a_1 + \cdots + a_{n-1}}{n} \cdot \frac{a_1 + a_2 + \cdots + a_n}{n}
+    .\end{align*}
+\end{problemnum}
+\end{chirpbox}
+
+\end{document}
