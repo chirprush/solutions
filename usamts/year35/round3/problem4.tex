@@ -1,0 +1,82 @@
+\begin{solution}{4}
+    \textbf{Solution 4.} [Incomplete] 
+
+    \begin{enumerate}[label=\alph*)]
+        \item \begin{claim}
+            We claim that no such ``concave-to-convex'' function \( f \) exists.
+        \end{claim}
+
+        [Incomplete]
+
+        \begin{center}
+        \rule{10cm}{0.5pt}
+        \end{center}
+
+    \item \begin{claim}
+            We claim that no such ``convex-to-concave'' function \( f \) exists.
+        \end{claim}
+
+        \begin{proof}
+            Suppose for contradiction some \( f \) did exist. We shall now
+            prove that this cannot be possible.
+
+            Consider a set of \( n \) distinct points \( S := \{S_1, S_2,
+            \ldots, S_n\} \) and the image of this set under \( f \), \( P \).
+            That is, let \( P_k := f(S_k) \) for \( 1 \le k \le n \) and \( P
+            := \{ P_1, P_2, \ldots, P_n \} \) (in order to avoid
+            self-intersections, one can order the points by their angle about
+            the centroid going in the counterclockwise direction). We shall in
+            particular be concerned with all quadrilaterals formed by taking \(
+            4 \) points from \( P \), and we shall call the set of these
+            quadrilaterals \( Q \). Notice that, by the non-degenerate
+            condition, at most one point from \( S \) can be mapped to a
+            non-distinct point in \( P \) (if this was not the case, we could
+            take the quadrilateral containg these greater than one non-distinct
+            points mapped under \( f \) and observe that it would form either a
+            line or point, which would contradict the definition of \( f \)).
+            This implies \( |P| \ge n - 1 \).
+
+            Additionally, we observe that any quadrilateral trivially can only
+            have one reflex angle (that is, an angle that is between \(
+            180\degree \) and \( 360\degree \) exclusive), and that a
+            quadrilateral is concave iff it has a reflex angle. Thus, it is
+            sufficient to prove that some quadrilateral in \( Q \) does not
+            have a reflex angle.
+
+            For convenience of handling both cases of the value of \( |P| \),
+            choose \( n = 6 \) and, if \( |P| = 5 \), we can consider all the
+            points, else if \( |P| = 6 \), we may consider the first five
+            points (following the ordering chosen above). Thus we have points
+            \( P_1, P_2, P_3, P_4, P_5 \) to work with, which we shall alias as
+            \( A, B, C, D, E \) for typesetting purposes.
+
+            Clearly we can form \( 5 \) quadrilaterals: \( ABCD, ABCE, ACDE,
+            ABDE, BCDE \). We may go through these and determine which angles
+            are reflex angles and which are not.
+            \begin{itemize}
+                \item Consider quadrilateral \( ABCD \). Without loss of generality, we can say that \( \angle ABC \) is a reflex angle. Thus,
+                    \[
+                        \angle BCD, \angle CDA, \angle DAB
+                    \]
+                    are all not reflex angles.
+                \item Consider quadrilateral \( ABCE \). We have that \( \angle ABC \) is a reflex angle from the previous quadrilateral. Thus,
+                    \[
+                        \angle BCE, \angle CEA, \angle EAB
+                    \]
+                    are all not reflex angles.
+                \item Consider quadrilateral \( ACDE \) (yes, this order of quadrilaterals is intentional). We already know that \( \angle ACD \) is not a reflex angle by ordering. In addition, \( \angle CDA = \angle CDE + \angle EDA \) and \( \angle DAC = \angle EAC + \angle EAD \) (where both \( \angle CDA \) and \( \angle DAC \) are not reflex angles by previous quadrilaterals and ordering respectively), so
+                    \[
+                        \angle ACD, \angle CDE, \angle EAC
+                    \]
+                    are all not reflex angles. Thus \( \angle DEA \) is a reflex angle.
+                \item Consider quadrilateral \( ABDE \). Since \( \angle DEA \) is a reflex angle,
+                    \[
+                        \angle ABD, \angle BDE, \angle EAB
+                    \]
+                    are all not reflex angles.
+                \item Consider quadrilateral \( BCDE \). We already know that \( \angle BCD \) and \(  \angle CDE \) are not reflex angles. Observe that the conjugate of \( \angle DEB \) is a reflex angle by our point ordering (perhaps it would have been better to use signed angles) the conjugate of \( \angle EBC \) is also a reflex angle by similar reasoning, angles \( \angle DEB \) and \( \angle EBC \) are not reflex angles. This implies that \( BCDE \) is not concave.
+            \end{itemize}
+            As we've reached a contradiction, \( f \) cannot exist.
+        \end{proof}
+    \end{enumerate}
+\end{solution}

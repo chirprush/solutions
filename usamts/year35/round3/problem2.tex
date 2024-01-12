@@ -1,0 +1,62 @@
+\begin{solution}{2}
+    \textbf{Problem 2.} We shall search for possible unordered pairs \( (a, b, c) \) and display all possible products at the end of the answer.
+
+    Notice that, of all \( abc \) cubes, \( (a-2)(b-2)(c-2) \) are unpainted.
+    Thus we are looking for all unordered \( (a, b, c) \) such that
+    \[
+        f(a, b, c) := \frac{(a-2)(b-2)(c-2)}{abc} = \frac{1}{5}
+    ,\]
+    where \( a, b, c \ge 3 \).
+
+    This is a standard looking Diophantine equation, to which we seemingly want
+    to apply SFFT and then look at prime factorizations for solutions. Treating
+    \( c \) as a constant and removing the denominators, we achieve
+    \begin{align*}
+        5(a-2)(b-2)(c-2) &= abc \\
+        (2c-5)ab - 5(c-2)a - 5(c-2)b + 10(c-2) &= 0 \\
+        (2c-5)^2 ab - 5(c-2)(2c-5) a - 5(c - 2)(2c - 5)b + 10(c-2)(2b-5) &= 0 \\
+        \left( (2c - 5)a - 5(c-2) \right)\left( (2c - 5)b - 5(c-2) \right) &= 5c(c-2)
+    .\end{align*}
+
+    With this, we must go through values of \( c \) to find solutions in \( a
+    \) and \( b \), which makes the proof slightly inelegant and a little
+    bashy, but oh well. First, however, we must prove a very handy claim, which allows us to stop looking after \( c = 20 \).
+    \begin{claim}
+        WLOG suppose \( c = \max\{a, b, c\} \). There exists no \( a, b, c \) for which \( f(a, b, c) = 1/5 \) when \( c > 20 \).
+    \end{claim}
+    \begin{proof}
+        Suppose \( c > 20 \). Observe that
+        \[
+            f(a, b, 20) < f(a, b, c) < \lim_{c' \to \infty} f(a, b, c')
+        ,\]
+        so if \( f(a, b, c) = 1/5 \), then we must have that
+        \[
+            \frac{9}{10} \cdot \frac{(a-2)(b-2)}{ab} < \frac{1}{5} < \frac{(a-2)(b-2)}{ab}
+        .\]
+        If both \( a \ge 4 \) and \( b \ge 4 \), then this condition cannot possibly be true. Thus, WLOG we set \( b = 3 \) to look for any remaining cases that may have a solution. Doing so, we get that
+        \[
+            \frac{a-2}{a} > \frac{3}{5} \implies a > 5
+        \]
+        and simulatenously
+        \[
+            \frac{a-2}{a} < \frac{2}{3} \implies a < 6,
+        \]
+        which cannot be true.
+
+        Because we've covered all cases, there exists no solution for \( c \ge 20 \) (or any of the dimensions being greater than \( 20 \)).
+    \end{proof}
+    The only real bashy part of the proof comes into play with checking all
+    cases where \( c = 3, 4,\ldots, 20 \). Luckily, we can use a bit of Python
+    to do the work for us:
+
+    \verbatiminput{scripts/grogg-answers/main.py}
+    This outputs
+    \verbatiminput{scripts/grogg-answers/output.txt}
+
+    Thus, the only cases that yield any new solutions are \( c = 3 \) and \( c = 4 \). (that is,
+    there solutions for \( c = 5, 6, \ldots, 20 \), but they do not yield a
+    different product from any of the cases found in cases \( c = 3 \) and \( c
+    = 4 \)).
+
+    So, the only possible numbers of cubes are the products of the values in each unordered pair: \( \boxed{120, 160, 240, 360} \).
+\end{solution}

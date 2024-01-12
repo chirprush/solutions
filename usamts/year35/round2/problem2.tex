@@ -1,0 +1,37 @@
+\begin{solution}{2}
+    \textbf{Problem 2.} It's clear that at most we can use \( 6 \) distinct digits, and at the very least, we must use \( 1 \) distinct digit. In addition, it's also clear to see that the choice of digits does not matter. Motivated by this, let \( f(n) \) denote the number of possible combinations knowing that there are \( n \) distinct digits used.
+
+    We can derive a recurrence for \( f(n) \) through combinatorial argument.
+
+    \begin{claim}
+        We have the following recurrence for \( f(n) \):
+        \[
+            f(n) = n^6 - \sum_{k = 1}^{n - 1} \binom{n}{k} f(k)
+        .\]
+    \end{claim}
+
+    \begin{proof}
+        There are \( n^6 \) possible combinations that have at most \( n \)
+        distinct digits, but this clearly overcounts cases in which we don't
+        use all \( n \) digits. In particular, for each \( k \in \{1, 2,
+        \ldots, n -1\} \) we must exclude the cases in which exactly \( k \)
+        distinct digits are used: there are \( \binom{n}{k} \) ways to choose these \( k \) distinct digits, and \( f(k) \) combinations for each set of \( k \) digits. Thus,
+        \[
+            f(n) = n^6 - \sum_{k = 1}^{n - 1} \binom{n}{k} f(k)
+        .\]
+    \end{proof}
+
+    As a base case, we can also trivially see that \( f(1) = 1 \). From this,
+    it's easy to construct a table of the possible combinations for \( n \in
+    \{1, 2, 3, 4, 5, 6\} \):
+
+    \begin{center}
+    \begin{tabular}{c|c|c|c|c|c|c}
+        \( n \) & 1 & 2 & 3 & 4 & 5 & 6 \\
+        \hline
+        \( f(n) \) & 1 & 62 & 540 & 1560 & 1800 & 720
+    \end{tabular}
+    \end{center}
+
+    We see from this that the number of possible combinations to try are maximized when \( \boxed{5} \) smudges are left.
+\end{solution}

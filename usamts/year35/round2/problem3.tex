@@ -1,0 +1,95 @@
+\begin{solution}{3}
+    \textbf{Problem 3.} We shall break the proof down into the following steps:
+    \begin{enumerate}
+        \item Preliminaries and inspecting the balancing condition.
+        \item Proving that any triangle is determined by the numbers in its base.
+        \item Proving the relation between the triangle base sequence and the top vertex number.
+        \item Proving the vertices of triangle are balanced.
+    \end{enumerate}
+
+    To start, we shall rename \( 1 \to 0 \), \( 2 \to 1 \), \( 3 \to 2 \). This
+    does not change the underlying problem, but it allows us to express the
+    balance condition rather concisely. Consider any three hexagon triangle
+    with two hexagons on the bottom, containing numbers \( a, b \in \{ 0, 1, 2 \} \),
+    and a hexagon to be filled in at the top. By the balancing condition, the
+    upper hexagon must necessarily be congruent to \( f(a, b) := 2(a + b) \bmod 3 \).
+
+    In order to utilize this relation fully, we must show the following:
+    \begin{claim}
+        Any triangle filling is completely determined by the filling of its
+        base. That is, for a triangle with a base of length \( n \), we may
+        choose only \( n \) numbers freely, which fills the rest of the triangle.
+    \end{claim}
+    Note: When mentioning the base of the triangle, we are referring to all
+    bottom hexagons of the triangle. The length of this base is the number of
+    hexagons which comprise it. The base of a triangle will always be greater
+    than or equal to \( 2 \). The vertices of this triangle refer to the shaded
+    hexagons in the problem.
+    \begin{proof}
+        We may prove this relatively simply by induction.
+
+        As a base case, we can see that for a base length \( n = 2 \), we have
+        \( 3 \) hexagons. If we fill only \( 0 \) hexagons or \( 1 \) hexagon
+        in the base, we cannot fill the entire triangle. One can observe that
+        we need to choose \( 2 \) hexagons in the base (the entire base) until
+        the balancing condition completes the triangle.
+
+        % Bro this feels hella sus
+        Assuming this proposition holds true for \( n = k - 1 \), we shall now
+        prove it true for \( n = k \). We note that must fill at least \( k - 1
+        \) hexagons in the base (otherwise, the \( k - 1 \) base length
+        subtriangle could not be filled, and thus we would not be able to fill
+        the entire triangle). Using our inductive assumption, we may fill in
+        the \( k - 1 \) base triangle and see that the full triangle is not
+        filled in. Filling in the empty hexagon in remaining base slot will,
+        however, fill the triangle, as the balancing condition cascades up.
+    \end{proof}
+    Now that we know a base defines a triangle filling, we can refer to the
+    filling by some selection of base. We can now move onto our next claim,
+    making use of the numerical formulation of the balancing condition and
+    building up the triangle from the base.
+    \begin{claim}
+        Suppose we have a triangle described by base \( a_0, a_1, \ldots,
+        a_{n-1} \). If \( c \) denotes the value of the top vertex (the top
+        shaded hexagon), then we have
+        \[
+            c \equiv 2^{n-1} \sum_{k = 0}^{n - 1} \binom{n - 1}{k} a_k \pmod{3}
+        .\]
+    \end{claim}
+    \begin{proof}
+        We shall use a combinatorial argument to prove this, as it seems far
+        easier than strict induction.
+
+        Notice that \( f(a, b) \) (the balancing condition) has some nice
+        properties: in particular, it is linear. This allows us to see that the
+        top vertex value is linear in \( a_0, a_1, \ldots, a_{n-1} \).
+
+        In order to determine the coefficients in front of the base values, we can first observe that the terms are doubled for each row of the triangle, thus all terms will be multiplied by a factor of \( 2^{n-1} \).
+
+        Finally, one can transform the problem of finding these coefficients to that of a lattice path problem. For some base hexagon \( a_k \), there are \( \binom{n - 1}{k} \) paths one can take up the triangle to reach the top vertex. Combining all these together, we see that
+        \[
+            c \equiv 2^{n-1} \sum_{k = 0}^{n - 1} \binom{n - 1}{k} a_k \pmod{3}
+        .\]
+        % I should probably have some tikz stuff to better illustrate the point. A picture would be very helpful after all.
+    \end{proof}
+    We can now take our specific case of triangle base length \( n = 10 \) for
+    our problem. We must prove that for any triangle filling, the top vertex is
+    balanced with regards to the other vertices. Using our first claim, we can
+    look at arbitrary choices of bases to verify for all triangle fillings, and
+    we may use the previous claim to find the value of the top vertex in terms
+    of the base. Doing so we see that the top vertex value \( c \) is
+    \begin{align*}
+        c &\equiv 2^9 \sum_{k = 0}^{9} \binom{9}{k} a_k \pmod{3} \\
+        &\equiv 2 \sum_{k = 0}^{9} \binom{9}{k} a_k \pmod{3}
+    .\end{align*}
+    Noticing that \( 3 | \binom{9}{k} \) for \( k \ne 1, 9 \), we can cancel
+    out the inner base terms and get the top vertex value in terms of the two
+    base vertices:
+    \begin{align*}
+        c &\equiv 2(a_0 + a_{n-1}) \pmod{3} \\
+        &\equiv f(a_0, a_{n-1}) \pmod{3}
+    .\end{align*}
+    This is precisely our balancing condition! Thus, for the base length \( n =
+    10 \) triangle, any filling of the triangle must necessarily have its
+    vertices balanced. This completes the proof.
+\end{solution}

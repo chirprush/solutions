@@ -1,0 +1,140 @@
+\begin{solution}{3}
+    \textbf{Problem 3.} After a little bit of playing around and perhaps some
+    computer simulation (a small exercise in DP actually), one gets a very good
+    indicator of the answer, so now it's left to actually make it rigorous.
+
+    First, notice that we can represent the state of the game as a pair \( (t, w) \), where \( t \) represents the number of 2's on the whiteboard and \( w \) represents the number of 1's.
+
+    \begin{definition}
+        We call a state \( (t, w) \) \textit{winning} if, no matter what
+        sequence of moves one plays, the player who's turn it is with that
+        state can win. Similarly, we call a state \textit{losing} if, no matter
+        what sequence of moves one plays, the player who's turn it is with the
+        state can never win.
+    \end{definition}
+
+    In order to determine whether or not Lizzie has a winning strategy, it
+    suffices to determine for which \( n \) the state \( (n, 0) \) is winning.
+    We shall show a slightly stronger result to do so:
+
+    \begin{claim}
+        We have the following:
+        \begin{itemize}
+            \item If \( n \equiv 0 \pmod{3} \), then \( (n, 0) \) is losing and \( (n, w) \) is winning for \( w \ge 1 \).
+            \item If \( n \equiv 1 \pmod{3} \), then \( (n, 0) \) is winning, \( (n, 1) \) is losing, and \( (n, w) \) is winning for \( w \ge 2 \).
+            \item If \( n \equiv 2 \pmod{3} \), then \( (n, w) \) is winning for \( w \ge 0 \).
+        \end{itemize}
+    \end{claim}
+
+    \begin{proof}
+        We shall prove this through strict induction.
+
+        Suppose our claim holds true for \( n = 0, 1, 2, \ldots, 3k - 3, 3k - 2, 3k - 1 \). We shall then prove our claim for \( n = 3k, 3k + 1, 3k + 2 \), tackling these cases in order:
+
+        \begin{itemize}
+            \item We must first prove that \( (3k, 0) \) is losing. First,
+                observe that playing the first move type, which yields the
+                state \( (3k - 1, 0) \) is winning for the other player by our
+                inductive assumption. Next, notice that \( (3k - w, w) \) for
+                \( w \ge 1 \) (which represents all game states reachable by
+                the second move type) is always winning for the other player
+                because \( (3k - 1, 1) \) is winning by our inductive
+                hypothesis and \( (n, w) \) for \( w \ge 2 \) is always
+                winning. Thus, there is no way for the current player to reach
+                a position where the opponent loses, so \( (3k, 0) \) loses.
+
+                Notice then that, if one considers positions \( (3k, w) \) for
+                \( w \ge 1 \), the current player can simply subtract \( w \)
+                1's from to force the opponent to \( (3k, 0) \), which is
+                losing for them. Therefore, all states of the form \( (3k, w)
+                \) for \( w \ge 1 \) are winning.
+
+            \item Next, we shall look at \( (3k + 1, 0) \). This is trivially
+                winning because, if we remove a single 2, the position becomes
+                \( (3k, 0) \), which we've proved is losing for the other
+                player.
+
+                Now we consider the position \( (3k + 1, 1) \). From this
+                position, we can play a move of the first type to reach \( (3k,
+                1) \), but we have already proven that this is winning for the
+                opponent. Using the second move type, we may arrive at
+                positions of the form \( (3k + 1 - t, 1 + t) \) and \( (3k + 1
+                - t, t) \) for \( t \ge 1 \), but because all positions (with a
+                lesser number of twos of course) of the form \( (a, b) \) for
+                \( b \ge 2 \) are winning for the opponent, so we need only
+                look at \( (3k + 1 - 1, 1) \), which we've already proven to be
+                winning for the opponent. Thus, \( (3k + 1, 1) \) is losing.
+
+                It follows that, if the state is of the form \( (3k + 1, w) \),
+                where \( w \ge 2 \), the current player may subtract away \( (w
+                - 1) \) 1's in order to reach \( (3k + 1, 1) \), so all of these
+                positions are winning.
+
+            \item Finally, consider the state \( (3k + 2, 0) \). Since we can
+                turn one of the 2's into a 1, the opponent receives \( (3k + 1,
+                1) \), which we've proven to be losing, so \( (3k + 2, 0) \) is
+                winning.
+
+                For the added 1's cases, we can do something of a very similar
+                nature. Consider the states \( (3k + 2, w) \) for \( w \ge 1
+                \). By subtracting one from a single 2 and taking away all other \(
+                w \) 1's, we can still reach \( (3k + 2 - 1, w - w + 1) = (3k +
+                1, 1) \), which means that these positions are winning too.
+        \end{itemize}
+        Now for our base case, it suffices to prove that \( (0, 0) \) is losing
+        and states \( (1, 0), (2, 0) \) are winning, with the states with extra
+        1's appended on following exactly according to the logic detailed in
+        the above three cases.
+        \begin{itemize}
+            \item For \( (0, 0) \), notice that if the current player reaches
+                this position, then the other player must necessarily have
+                reached the state where everything is \( 0 \) first, so this
+                means that the state is losing.
+            \item The state \( (1, 0) \) is trivially winning, for one may
+                simply take away the 2 to win.
+            \item The state \( (2, 0) \) is also winning. Once again using
+                logic previously detailed in the top three cases, we can see
+                that \( (1, 1) \) is losing, so we can subtract one from a
+                single 2 to send the opponent to a losing position.
+        \end{itemize}
+    \end{proof}
+
+    Thus, it follows through induction that, after proving this slightly stronger result, the only \( n \) for which Lizzie can always win are \( n \) of the form \( 3k + 1 \) and \( 3k + 2 \).
+
+    % First we must show that if n is divisible by 3 then we always lose, which
+    % is a bit hard and might need induction? I don't actually know how I'm
+    % going to tackle this.
+
+    % We're probably going to have to go with some variant of strict induction
+    % where we start with \( n = 0, n = 1, n = 2 \) and then prove, from the
+    % three previous solutions, the three forward solutions.
+
+    % n = 0: loses trivially
+    % n = 1: wins trivially
+    % n = 2: wins pretty trivially
+
+    % n = 3: loses because
+    % a) Going from 222 -> 22 loses trivially because n - 1 wins for the other
+    %    person
+    % b) Going from 222 -> 221 loses because 221 wins for other (we'll have to prove that I suppose
+    % c) Going from 222 -> 211 loses because 211 wins for other (we'll also have to prove that)
+    % d) Going from 222 -> 111 loses because 111 trivially wins
+
+    % Game states: 
+    % 0 1 1 1 1 1 1 1 1 1 
+    % 1 0 1 1 1 1 1 1 1 1 
+    % 1 1 1 1 1 1 1 1 1 1 
+    % 0 1 1 1 1 1 1 1 1 1 
+    % 1 0 1 1 1 1 1 1 1 1 
+    % 1 1 1 1 1 1 1 1 1 1 
+    % 0 1 1 1 1 1 1 1 1 1 
+    % 1 0 1 1 1 1 1 1 1 1 
+    % 1 1 1 1 1 1 1 1 1 1 
+    % 0 1 1 1 1 1 1 1 1 1
+
+    % If n = 0 mod 3, one wins if there is at least 1 '1'
+    % - This is the easiest to prove if we have that n = 0 mod 3 always loses for 0 '1's
+    % If n = 1 mod 3, one wins if there are 0 '1's or at least 2 '1's
+    
+    % If n = 2 mod 3, any number of '1's added on will win
+\end{solution}

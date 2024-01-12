@@ -1,0 +1,15 @@
+\begin{solution}{3}
+    We claim that the minimum number and maximum number of roof-friendly pairs for a given \( n \geq 2 \) are \( n - 1 \) and \( 2n - 3 \) respectively.
+
+    The minimum case is trivial. Given that we consider each pair of adjacent buildings to be roof-friendly regardless of height, there necessarily must be at least \( n - 1 \) roof-friendly pairs. It remains to pick a sequence in which no other ``non-trivial'' roof-friendly pairs exist. This sequence is simply a sorted list. Observe that because the following list
+    \[
+        1, 2, \ldots, n
+    \]
+    is strictly increasing, there shall be no pairs of numbers for which those contained between will be shorter than the pair edges (other than the \( n - 1 \) pairs for which there exist no inner buildings).
+
+    For the maximum case, we must choose a sequence that maximizes the number of pairs for which they contain all smaller numbers. Notice that if we have roof-friendly pairs that are disjoint from each other, they interfere in a way and decrease the possible number of pairs. This motivates a sequence such as the following which maximizes pairs without interfering with each other
+    \[
+        n - 1, n - 2, \ldots, 2, 1, n
+    .\]
+    Apart from the \( n - 1 \) trivial pairs, this makes an additional \( n - 2 \) pairs between all numbers \( 2, 3, \ldots, n - 1 \) and \( n \), giving us \( 2n - 3 \) pairs.
+\end{solution}

@@ -1,0 +1,30 @@
+\begin{solution}{2}
+    \textbf{Solution 2.} No; this number can never be prime.
+
+    Suppose the sequence \( p_0, p_1, \ldots, p_{100} \) is some permutation of
+    the list of numbers 101 numbers \( 2024, 2025, \ldots, 2124 \). We can
+    express all concatenations of the numbers as the following sum, with the
+    order determined by the sequence \( p_k \):
+    \[
+        P = \sum_{k = 0}^{100} p_k 10^{4k} = \sum_{k = 0}^{100} p_k 100^{2k}
+    .\]
+    Take \( P \) modulo \( 101 \).
+    \begin{align*}
+        P &\equiv \sum_{k = 0}^{100} p_k (-1)^{2k} \pmod{101} \\
+        &\equiv \sum_{k = 0}^{100} p_k \pmod{101} \\
+        &\equiv \sum_{k = 2024}^{2124} k \pmod{101}
+    .\end{align*}
+    That is, regardless of the ordering of the numbers, \( P \) is equivalent
+    to the sum of list of 101 numbers when modulo 101. Using the formula for the sum of the
+    first \( n \) natural numbers, we can clearly see that
+    \begin{align*}
+        P &\equiv \frac{2124 \cdot 2125}{2} - \frac{2023 \cdot 2024}{2} \pmod{101} \\
+        &\equiv 1062 \cdot 2125 - 2023 \cdot 1012 \pmod{101} \\
+        &\equiv 52 \cdot 4 - 3 \cdot 2 \pmod{101} \\
+        &\equiv 6 - 3 \cdot 2 \pmod {101} \\
+        &\equiv 0 \pmod{101}
+    .\end{align*}
+    Any way of concatenating the numbers will end up with the same result,
+    meaning that all numbers of the questioned form are divisible by \( 101 \)
+    and thus not prime.
+\end{solution}

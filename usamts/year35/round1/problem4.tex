@@ -1,0 +1,88 @@
+\begin{solution}{4}
+    \textbf{Solution 4.} \textbf{\textcolor{red}{[Incomplete]}} Motivated by the structure of the left-hand side of the equations, we can
+    transform the question of whether there exists a real solution \( (a, b, c) \)
+    to whether the following cubic polynomial equation has all real roots:
+    \[
+        P(z) := z^3 - Az^2 + Bz - C = 0
+    ,\]
+    where
+    \begin{align*}
+        A &:= a + b + c = \frac{x + x^2 + x^4 + y + y^2 + y^4}{2}, \\
+        B &:= ab + bc + ac = \frac{x^3 + x^5 + x^6 + y^3 + y^5 + y^6}{2}, \\
+        C &:= abc = \frac{x^7 + y^7}{2}
+    .\end{align*}
+    In order to determine that this polynomial has all real roots (given the
+    boundary conditions), we shall make liberal use of Descartes' rule of signs.
+
+    Observe that
+    \begin{align*}
+        P(z + k) &= z^3 + (3k - A) z^2 + (-2Ak + B + 3k^2) z + (-Ak^2 + Bk - C + k^3), \\
+        P(-z + k) &= -z^3 + (3k - A) z^2 - (-2Ak + B + 3k^2) z + (-Ak^2 + Bk - C + k^3)
+    .\end{align*}
+    We will use these equations to shift the polynomial and isolate the real roots.
+    Specifically, we claim the following:
+
+    For \( k = 0 \), the polynomial the following has coefficient signs:
+    \begin{center}
+        \begin{tabular}{c|c|c|c|c|c}
+            & \( z^3 \) & \( z^2 \) & \( z \) & \( 1 \) & Changes \\
+            \hline
+            \( z + k \) & + & - & + & - & 3 \\
+            \( -z + k \) & - & - & - & - & 0 
+        \end{tabular}
+    \end{center}
+
+    For \( k = \max \{ x, y \} \), the polynomial the following has coefficient signs:
+    \begin{center}
+        \begin{tabular}{c|c|c|c|c|c}
+            & \( z^3 \) & \( z^2 \) & \( z \) & \( 1 \) & Changes \\
+            \hline
+            \( z + k \) & + & - & + & + & 2 \\
+            \( -z + k \) & - & - & - & + & 1 
+        \end{tabular}
+    \end{center}
+
+    For \( k = (\max \{ x, y \})^2 \), the polynomial has the following coefficient signs:
+    \begin{center}
+        \begin{tabular}{c|c|c|c|c|c}
+            & \( z^3 \) & \( z^2 \) & \( z \) & \( 1 \) & Changes \\
+            \hline
+            \( z + k \) & + & - & - & - & 1 \\
+            \( -z + k \) & - & - & + & - & 2 
+        \end{tabular}
+    \end{center}
+
+    Indeed, if we have these sign changes, we can easily prove that all roots
+    are real. From the negative \( z \) case of \( k = \max \{x, y \} \) and the positive \( z \) case of \( k = (\max\{x, y\})^2 \), we can see that there is a real root in the interval \( (-\infty, \max\{x, y\}] \) and another real root in \( [(\max\{x, y\})^2, \infty) \). Because the coefficients of \( P(z) \) are real, and \( P(z) \) has at least two real roots, the last root cannot be complex (by the complex conjugate root theorem). In short, all three roots are real, and thus there is a real solution \( (a, b, c) \).
+
+    Thus, now it is left to us to prove that these signs are in fact true. It is sufficient to prove that the \( z + k \) coefficients are true, as the \( -z + k \) trivially follow through flipping the sign of \( z^3 \) and \( z \).
+
+    For \( k = 0 \), the inequalities are trivial. Notice that \( A, B, C \geq 0 \), so the polynomial \( P(z) = z^3 - Az^2 + Bz - C \) has signs \( +-+- \).
+
+    The shifted cases are a bit more unwieldy. We shall tackle them casewise.
+
+    \textbf{Case \( x \geq y \):} We have two cases to figure out: \( k = x \) and \( k = x^2 \). Starting with \( k = x \), we must prove
+    \begin{align}
+        3x - A &\leq 0 \\
+        -2Ax + B + 3x^2 &\geq 0 \\
+        -Ax^2 + Bx - C + x^3 &\geq 0
+    \end{align}
+
+    Showing that (1) holds is rather simple, using AM-GM and that \( y \geq \sqrt{x} \):
+    \begin{align*}
+        A &\geq 3 \sqrt{x^7 y^7} \geq 3 x^{21/4} \\
+        \implies 3x-A &\leq 3x-3x^{21/4} \\
+        \implies 3x - A &\leq 3x(1 - x^{17/4}) \leq 0
+    .\end{align*}
+    Showing that (3) holds also isn't too bad. Notice that if we view the LHS as a polynomial in \( y \), we have the roots \( y = x \) and \( y = \sqrt{x} \). We can divide these out (and flipping the sign because \( \sqrt{x} \leq y \leq x \), so \( (y - x)(y - \sqrt{x}) \) is negative) to get
+    \begin{align*}
+        -Ax^2 + Bx - C + x^3 &\geq 0 \\
+        \iff \frac{1}{2} \left( -y^5 - x^{1/2} y^4 + xy + x^{3/2} \right) &\leq 0
+    ,\end{align*}
+    but since \( -y^5 - x^{1/2} y^4 + xy + x^{3/2} = -(y^4 - x)(y + x^{1/2}) \), this always holds.
+
+    \textcolor{red}{It's unfortunately in showing (2) and the other cases (such as \( k = x^2 \)) that I struggled to make progress and subsequently ran out of time. Thus, this solution is incomplete.}
+\end{solution}
+
+% Consider also the case when x = y = 1 because then we get a root of
+% multiplicity 3 which technically is no bueno for Descartes' rule of signs.

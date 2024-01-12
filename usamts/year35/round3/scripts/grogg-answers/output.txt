@@ -1,0 +1,56 @@
+Case c = 3: (1a - 5)(1b - 5) = 15
+    (6, 20, 3) -> 360
+    (8, 10, 3) -> 240
+
+Case c = 4: (3a - 10)(3b - 10) = 40
+    (4, 10, 4) -> 160
+    (5, 6, 4) -> 120
+
+Case c = 5: (5a - 15)(5b - 15) = 75
+    No new solutions
+
+Case c = 6: (7a - 20)(7b - 20) = 120
+    No new solutions
+
+Case c = 7: (9a - 25)(9b - 25) = 175
+    No new solutions
+
+Case c = 8: (11a - 30)(11b - 30) = 240
+    No new solutions
+
+Case c = 9: (13a - 35)(13b - 35) = 315
+    No new solutions
+
+Case c = 10: (15a - 40)(15b - 40) = 400
+    No new solutions
+
+Case c = 11: (17a - 45)(17b - 45) = 495
+    No new solutions
+
+Case c = 12: (19a - 50)(19b - 50) = 600
+    No new solutions
+
+Case c = 13: (21a - 55)(21b - 55) = 715
+    No new solutions
+
+Case c = 14: (23a - 60)(23b - 60) = 840
+    No new solutions
+
+Case c = 15: (25a - 65)(25b - 65) = 975
+    No new solutions
+
+Case c = 16: (27a - 70)(27b - 70) = 1120
+    No new solutions
+
+Case c = 17: (29a - 75)(29b - 75) = 1275
+    No new solutions
+
+Case c = 18: (31a - 80)(31b - 80) = 1440
+    No new solutions
+
+Case c = 19: (33a - 85)(33b - 85) = 1615
+    No new solutions
+
+Case c = 20: (35a - 90)(35b - 90) = 1800
+    No new solutions
+
