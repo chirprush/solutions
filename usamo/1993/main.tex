@@ -30,20 +30,20 @@ out written down just to like document them. Once I solve the question, I'll pro
         For all \( n \ge 2 \), we have that \( b < a \).
     \end{claim}
     \begin{proof}
-        For convenience, let \( f(a) = a^n - a - 1 \) and \( g(b) = b^{2n} - b
+        For convenience, let \( f(x) = x^n - x - 1 \) and \( g(x) = x^{2n} - x
         - 3a \). By Descartes' rule of signs, one may verify that there exists
         only one positive root of each these polynomials.
 
         Notice that because \( a^n > a \) and \( b^{2n} > b \), we have that \(
-        a > 1 \) and \( b > 1 \), and that both \( f(a) \) and \( g(b) \) are
-        strictly increasing for \( a, b > 1 \).
+        a > 1 \) and \( b > 1 \), and that both \( f(x) \) and \( g(x) \) are
+        strictly increasing (and continuous) for \( x > 1 \).
 
         We shall now bound the value of \( b \) between \( 1 \) and \( a \). Observe that
         \begin{align*}
             g(1) &= -3a < 0, \\
             g(a) &= a^{2n} - 4a = (a + 1)^2 - 4a = (a-1)^2 > 0
         .\end{align*}
-        By the intermediate value theorem, there must then exist some positive root of \( g(b) \) between \( 1 \) and \( a \), which is precisely \( b \).
+        By the intermediate value theorem, there must then exist some positive root of \( g(x) \) between \( 1 \) and \( a \), which is precisely \( b \).
     \end{proof}
 \end{solution}
 
@@ -71,20 +71,15 @@ out written down just to like document them. Once I solve the question, I'll pro
 
 \begin{solution}
     From simply inspecting the problem and playing around with the equation, the answer appears right in one's face. Proving that it is the answer, as always, though, is not so obvious.
-    \begin{claim}
-        We claim that the value of the smallest constant \( c \) is \( 1 \).
-    \end{claim}
-    \begin{proof}
-        Suppose, for contradiction, that there existed some value \( t \) in \(
-        [0, 1] \) such that \( f(t) > ct = t \).
-    \end{proof}
+
+    We have immediately that \( f(0) = 0 \) and \( f(1) = 1 \), and we would like to prove that \( c = 1 \). Ideally the best way to prove this would be to show that \( f(x) \) is strictly increasing on \( [0, 1] \), so this should be our focus (hmmm but proving that it's strictly increasing doesn't actually show that \( c \) must be \( 1 \)).
 \end{solution}
 
 \begin{chirpbox}
 \begin{problemnum}
     Let \( a, b \) be odd positive integers. Define the sequence \( (f_n) \) by
     putting \( f_1 = a, f_2 = b, \) and by letting \( f_n \) for \( n \ge 3 \)
-    be the greatest odd divisor fo \( f_{n-1} + f_{n-2} \). Show that \( f_n \)
+    be the greatest odd divisor of \( f_{n-1} + f_{n-2} \). Show that \( f_n \)
     is constant for \( n \) sufficiently large and determine the eventual value
     as a function of \( a \) and \( b \).
 \end{problemnum}
@@ -93,7 +88,7 @@ out written down just to like document them. Once I solve the question, I'll pro
 \begin{solution}
     We shall denote the eventual value as \( g(a, b) \).
     \begin{claim}
-        The eventual value \( g(a, b) \) is the \( \gcd{(a, b)} \).
+        The eventual value \( g(a, b) \) is \( \gcd{(a, b)} \).
     \end{claim}
     \begin{proof}
         Let \( d \) denote denote \( \gcd{(a, b)} \). Notice that, because \( d
