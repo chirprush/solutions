@@ -11,10 +11,10 @@
 typedef long long ll;
 
 template<typename T>
-void read_some(std::ifstream &fin, std::vector<T> &v, int N) {
+void read_some(std::vector<T> &v, int N) {
     for (int i = 0; i < N; i++) {
         T a;
-        fin >> a;
+        std::cin >> a;
         v.push_back(a);
     }
 }

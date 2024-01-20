@@ -4,7 +4,9 @@
 #include <map>
 #include <set>
 #include <algorithm>
+
 #include <cmath>
+#include <cstdio>
 
 typedef long long ll;
 
@@ -29,10 +31,28 @@ void print_some(std::vector<T> &v) {
 }
 
 int main() {
-    int t;
-    std::cin >> t;
+    freopen("sleepy.in", "r", stdin);
+    freopen("sleepy.out", "w", stdout);
 
-    while (t--) {
+    int n;
+    std::cin >> n;
+
+    std::vector<int> p;
+    read_some(p, n);
+
+    int deranged = -1;
+
+    for (int i = n - 1; i >= 1; i--) {
+        if (p[i] < p[i - 1]) {
+            deranged = i;
+            break;
+        }
+    }
+
+    if (deranged == -1) {
+        std::cout << 0 << std::endl;
+    } else {
+        std::cout << deranged << std::endl;
     }
 
     return 0;

@@ -4,7 +4,9 @@
 #include <map>
 #include <set>
 #include <algorithm>
+
 #include <cmath>
+#include <cstdio>
 
 typedef long long ll;
 
@@ -29,11 +31,32 @@ void print_some(std::vector<T> &v) {
 }
 
 int main() {
-    int t;
-    std::cin >> t;
+    freopen("breedflip.in", "r", stdin);
+    freopen("breedflip.out", "w", stdout);
 
-    while (t--) {
+    int N;
+    std::cin >> N;
+
+    std::string A, B;
+    std::cin >> A >> B;
+
+    int count = 0;
+    bool currently = false;
+
+    for (int i = 0; i < N; i++) {
+        if (A[i] != B[i]) {
+            currently = true;
+        } else if (A[i] == B[i] && currently) {
+            currently = false;
+            count++;
+        }
     }
+
+    if (currently) {
+        count++;
+    }
+
+    std::cout << count << std::endl;
 
     return 0;
 }

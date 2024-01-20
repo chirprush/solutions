@@ -29,11 +29,27 @@ void print_some(std::vector<T> &v) {
 }
 
 int main() {
-    int t;
-    std::cin >> t;
+    int n;
+    std::cin >> n;
 
-    while (t--) {
+    std::vector<ll> a, b;
+    read_some(a, n);
+    read_some(b, n);
+
+    for (ll i = 0; i < n; i++) {
+        a[i] *= (i + 1) * (n - i);
     }
+
+    std::sort(a.begin(), a.end());
+    std::sort(b.rbegin(), b.rend());
+
+    ll answer = 0;
+
+    for (int i = 0; i < n; i++) {
+        answer += a[i] * b[i];
+    }
+
+    std::cout << answer << std::endl;
 
     return 0;
 }
