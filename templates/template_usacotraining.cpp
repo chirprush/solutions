@@ -26,13 +26,13 @@ void read_some(std::vector<T> &v, int N) {
 
 template<typename T>
 void print_some(std::vector<T> &v) {
-    std::cout << "[";
+    std::cerr << "[";
 
     for (int i = 0; i < v.size(); i++) {
-        std::cout << " " << v[i];
+        std::cerr << " " << v[i];
     }
     
-    std::cout << " ]" << std::endl;
+    std::cerr << " ]" << std::endl;
 }
 
 int main() {
