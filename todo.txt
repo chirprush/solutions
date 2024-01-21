@@ -1,1 +1,8 @@
-https://codeforces.com/problemset/problem/358/C
+General:
+http://www.usaco.org/index.php?page=viewproblem2&cpid=642
+https://codeforces.com/contest/1772/problem/D
+
+Prefix Sums:
+https://codeforces.com/contest/1826/problem/D
+https://codeforces.com/contest/1398/problem/C
+https://atcoder.jp/contests/abc164/tasks/abc164_d (Challenge)
