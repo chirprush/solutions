@@ -6,3 +6,6 @@ Prefix Sums:
 https://codeforces.com/contest/1826/problem/D
 https://codeforces.com/contest/1398/problem/C
 https://atcoder.jp/contests/abc164/tasks/abc164_d (Challenge)
+
+Solutions in Mind:
+https://codeforces.com/problemset/problem/1884/C
