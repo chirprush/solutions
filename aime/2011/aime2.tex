@@ -1,0 +1,57 @@
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{AIME II 2011 Solutions}
+
+\begin{chirpbox}
+\begin{problem}[\href{https://amctrivial.com/?page=2011_AIME_II_Problems/Problem_9}{2019 AIME II \#9}]
+    Let \( x_1, x_2, \ldots, x_6 \) be non-negative real numbers such that
+    \[
+        x_1 + x_2 + x_3 + x_4 + x_5 + x_6 = 1
+    ,\]
+    and
+    \[
+        x_1 x_3 x_5 + x_2 x_4 x_6 \ge \frac{1}{540}
+    .\]
+    Let \( p \) and \( q \) be positive relatively prime positive integers such that \( p/q \) is the maximum possible value of
+    \[
+        \sum_{cyc} x_1 x_2 x_3
+    .\]
+    Find \( p + q \).
+\end{problem}
+\end{chirpbox}
+
+\begin{solution}
+    By AM-GM we have that
+    \begin{align*}
+        \frac{1}{27}(x_1 + x_3 + x_5)^3 &\ge x_1 x_3 x_5, \\
+        \frac{1}{27}(x_2 + x_4 + x_6)^3 &\ge x_2 x_4 x_6
+    .\end{align*}
+    Motivated by this, let \( A := x_1 + x_3 + x_5 \) and \( B := x_2 + x_4 + x_6 \) so that we have
+    \begin{align*}
+        A + B &= 1, \\
+        A^3 + B^3 &\ge \frac{1}{20}
+    .\end{align*}
+    Cubing our first relation, we get that
+    \[
+        1 = A^3 + 3A^2 B + 3A B^2 + B^3 = A^3 + B^3 + 3AB \ge 3AB + \frac{1}{20}
+    ,\]
+    so \( AB \le 19/60 \).
+
+    Note that
+    \begin{align*}
+        AB &= (x_1 + x_3 + x_5)(x_2 + x_4 + x_6) \\
+        &= x_1 x_2 + x_1 x_4 + x_1 x_6 + x_2 x_3 + x_3 x_4 + x_3 x_6 + x_2 x_5 + x_4 x_5 + x_5 x_6
+    .\end{align*}
+
+    Consider the cyclic sum given in the problem, which we shall denote \( S \). Observe that
+    \begin{align*}
+        S &= (x_1 + x_3 + x_5)(x_2 x_3 + x_4 x_5 + x_1 x_6) \\
+        &+ (x_2 + x_4 + x_6) (x_3 x_4 + x_5 x_6 + x_1 x_2)
+    .\end{align*}
+\end{solution}
+
+\end{document}
