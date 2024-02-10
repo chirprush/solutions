@@ -46,17 +46,42 @@ int main() {
         }
     }
 
-    for (int i = N - 1; i >= 0; i--) {
-        for (int j = N - i; j < N; j++) {
+    /*
+    std::cout << "Parity:" << std::endl;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            std::cout << parity[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+    */
+
+    for (int i = N - 2; i >= 0; i--) {
+        for (int j = i + 1; j < N; j++) {
+            /*
+            std::cout << "Step (" << i << ", " << j << "):" << std::endl;
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    std::cout << dp[i][j] << " ";
+                }
+                std::cout << std::endl;
+            }
+            std::cout << std::endl;
+            */
+
             if (parity[i][j] == dp[i][j]) { continue; }
 
             dp[i][j] = 1 - dp[i][j];
             count++;
 
-            // Get all new paths in dp
-            
+            for (int k = j + 1; k < N; k++) {
+                dp[i][k] = (dp[i][k] + /* dp[i][j] * */ dp[j][k]) % 2;
+            }
         }
     }
+
+    std::cout << count << std::endl;
 
     return 0;
 }
