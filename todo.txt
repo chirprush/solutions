@@ -12,3 +12,4 @@ https://atcoder.jp/contests/abc164/tasks/abc164_d (Challenge)
 Solutions in Mind:
 https://codeforces.com/problemset/problem/1884/C
 http://usaco.org/index.php?page=viewproblem2&cpid=1353
+https://dmoj.ca/problem/mccc6s3
