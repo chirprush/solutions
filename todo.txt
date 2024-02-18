@@ -3,6 +3,8 @@ http://www.usaco.org/index.php?page=viewproblem2&cpid=642
 https://codeforces.com/contest/1772/problem/D
 https://codeforces.com/problemset/problem/1845/D
 https://codeforces.com/contest/1925/problem/C
+https://codeforces.com/problemset/problem/1895/C
+https://codeforces.com/problemset/problem/1889/A
 
 Prefix Sums:
 https://codeforces.com/contest/1826/problem/D
