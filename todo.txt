@@ -5,6 +5,8 @@ https://codeforces.com/problemset/problem/1845/D
 https://codeforces.com/contest/1925/problem/C
 https://codeforces.com/problemset/problem/1895/C
 https://codeforces.com/problemset/problem/1889/A
+https://codeforces.com/contest/1167/problem/E
+https://codeforces.com/contest/1932/problem/F
 
 Prefix Sums:
 https://codeforces.com/contest/1826/problem/D
