@@ -27,19 +27,16 @@ int solve(int n, std::vector<int> &l, std::vector<int> &r, std::vector<int> &c) 
     // Uhhh I don't think it does sadly
     std::vector<int> diffs;
 
-    for (int i = n - 1; i >= 0; i--) {
-        int j = n - 1;
-        while ((l[j] >= r[i] || l[j] <= 0) && j >= 0) { j--; }
-        diffs.push_back(r[i] - l[j]);
-        l[j] = -1;
+    for (int i = 0; i < n; i++) {
+        diffs.push_back(r[i] - l[i]);
     }
 
-    std::sort(diffs.begin(), diffs.end());
+    std::sort(diffs.rbegin(), diffs.rend());
 
     int weight = 0;
 
     for (int i = 0; i < n; i++) {
-        weight += diffs[i] * c[n - 1 - i];
+        weight += diffs[i] * c[i];
     }
 
     return weight;
