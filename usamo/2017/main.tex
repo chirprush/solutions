@@ -1,0 +1,30 @@
+\documentclass[a4paper, 10pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{USAJMO 2017 Solutions}
+
+\begin{chirpbox}
+\begin{problemnum}
+    Prove that there are infinitely many distinct pairs \( (a, b) \) of relatively prime positive integers \( a > 1 \) and \( b > 1 \) such that \( a^b + b^a \) is divisible by \( a + b \).
+\end{problemnum}
+\end{chirpbox}
+
+\begin{solution}
+    In other words, we must look for pairs such that
+    \[
+        a^b + b^a \equiv a^b + (-a)^a \equiv 0 \pmod{a+b}
+    .\]
+    Suppose \( a \) is odd and \( b = a + 2 \). We then have that
+    \[
+        \iff a^{a+2} - a^a \equiv a^a (a - 1)(a+1) \equiv 0 \pmod{2a + 2}
+    ,\]
+    but notice that since \( a - 1 \) is even, this is always the case, so there are infinitely many solutions. One may
+    also verify that \( a \) and \( b \) are coprime by observing that \(
+    \gcd(a, a + 2) = \gcd(a, 2) = 1 \), which follows from the fact that \( a
+    \) is odd.
+\end{solution}
+
+\end{document}

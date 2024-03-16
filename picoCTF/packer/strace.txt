@@ -1,0 +1,74 @@
+[00007fe00895117b] execve("./out", ["./out"], 0x7ffdd7a6b508 /* 64 vars */[00007fe00895117b] execve("./out", ["./out"], 0x7ffdd7a6b508 /* 64 vars */) = 0
+) = 0
+[000000000044aff5] open("/proc/self/exe", O_RDONLY[000000000044aff5] open("/proc/self/exe", O_RDONLY) = 3
+) = 3
+[000000000044b044] mmap(NULL, 309363, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0[000000000044b044] mmap(NULL, 309363, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f827c01f000
+) = 0x7f827c01f000
+[000000000044b05f] mmap(0x7f827c01f000, 309002, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED, 3, 0[000000000044b05f] mmap(0x7f827c01f000, 309002, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED, 3, 0) = 0x7f827c01f000
+) = 0x7f827c01f000
+[000000000044b0a4] mprotect(0x7f827c069000, 6259, PROT_READ|PROT_EXEC[000000000044b0a4] mprotect(0x7f827c069000, 6259, PROT_READ|PROT_EXEC) = 0
+[00007f827c06a162] readlink("/proc/self/exe", ) = 0
+[00007f827c06a162] readlink("/proc/self/exe", "/home/rushil/Coding/olympiad/pic"..., 4095) = 47
+"/home/rushil/Coding/olympiad/pic"..., 4095) = 47
+[00007f827c06a21c] mmap(0x400000, 802816, PROT_NONE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0[00007f827c06a21c] mmap(0x400000, 802816, PROT_NONE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x400000
+) = 0x400000
+[00007f827c06a21c] mmap(0x400000, 1304, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0[00007f827c06a21c] mmap(0x400000, 1304, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x400000
+) = 0x400000
+[00007f827c06a21c] mprotect(0x400000, 1304, PROT_READ[00007f827c06a21c] mprotect(0x400000, 1304, PROT_READ) = 0
+) = 0
+[00007f827c06a21c] mmap(0x401000, 605633, PROT_READ|PROT_WRITE|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0x1000[00007f827c06a21c] mmap(0x401000, 605633, PROT_READ|PROT_WRITE|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0x1000) = 0x401000
+) = 0x401000
+[00007f827c06a21c] mprotect(0x401000, 605633, PROT_READ|PROT_EXEC) = 0
+[00007f827c06a21c] mprotect(0x401000, 605633, PROT_READ|PROT_EXEC) = 0
+[00007f827c06a21c] mmap(0x495000, 157667, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0x95000[00007f827c06a21c] mmap(0x495000, 157667, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0x95000) = 0x495000
+) = 0x495000
+[00007f827c06a21c] mprotect(0x495000, 157667, PROT_READ) = 0
+[00007f827c06a21c] mmap(0x4bd000, 21008, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0xbc000[00007f827c06a21c] mprotect(0x495000, 157667, PROT_READ) = 0
+[00007f827c06a21c] mmap(0x4bd000, 21008, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0xbc000) = 0x4bd000
+) = 0x4bd000
+[00007f827c06a21c] mprotect(0x4bd000, 21008, PROT_READ|PROT_WRITE) = 0
+[00007f827c06a21c] mmap(0x4c3000, 2432, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0[00007f827c06a21c] mprotect(0x4bd000, 21008, PROT_READ|PROT_WRITE) = 0
+[00007f827c06a21c] mmap(0x4c3000, 2432, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x4c3000
+) = 0x4c3000
+[00007f827c06a202] mmap(NULL, 4096, PROT_READ, MAP_PRIVATE, 3, 0[00007f827c06a202] mmap(NULL, 4096, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f827c01e000
+) = 0x7f827c01e000
+[00007f827c06a209] close(3[00007f827c06a209] close(3)             = 0
+)             = 0
+[0000000000494dc3] munmap(0x7f827c01f000, 309363[0000000000494dc3] munmap(0x7f827c01f000, 309363) = 0
+) = 0
+[000000000040254f] arch_prctl(0x3001 /* ARCH_??? */, 0x7ffc4c09b5f0[000000000040254f] arch_prctl(0x3001 /* ARCH_??? */, 0x7ffc4c09b5f0) = -1 EINVAL (Invalid argument)
+) = -1 EINVAL (Invalid argument)
+[00000000004780fb] brk(NULL[00000000004780fb] brk(NULL)            = 0x1650000
+)            = 0x1650000
+[00000000004780fb] brk(0x16511c0[00000000004780fb] brk(0x16511c0)       = 0x16511c0
+)       = 0x16511c0
+[0000000000402e47] arch_prctl(ARCH_SET_FS, 0x1650880[0000000000402e47] arch_prctl(ARCH_SET_FS, 0x1650880) = 0
+) = 0
+[0000000000477eab] uname([0000000000477eab] uname({sysname="Linux", nodename="linux", ...}) = 0
+{sysname="Linux", nodename="linux", ...}) = 0
+[00000000004824f3] readlink("/proc/self/exe", [00000000004824f3] readlink("/proc/self/exe", "/home/rushil/Coding/olympiad/pic"..., 4096) = 47
+"/home/rushil/Coding/olympiad/pic"..., 4096) = 47
+[00000000004780fb] brk(0x16721c0[00000000004780fb] brk(0x16721c0)       = 0x16721c0
+)       = 0x16721c0
+[00000000004780fb] brk(0x1673000[00000000004780fb] brk(0x1673000)       = 0x1673000
+)       = 0x1673000
+[000000000045232b] mprotect(0x4bd000, 12288, PROT_READ[000000000045232b] mprotect(0x4bd000, 12288, PROT_READ) = 0
+) = 0
+[0000000000451359] fstat(1, [0000000000451359] fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x2), ...}) = 0
+{st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x2), ...}) = 0
+[0000000000451359] fstat(0, [0000000000451359] fstat(0, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x2), ...}) = 0
+{st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x2), ...}) = 0
+[0000000000451587] write(1, "Enter the password to unlock thi"..., 40[0000000000451587] write(1, "Enter the password to unlock thi"..., 40) = 40
+) = 40
+[00000000004514e2] read(0, [00000000004514e2] read(0, "asdf\n", 1024) = 5
+"asdf\n", 1024) = 5
+[0000000000451587] write(1, "You entered: asdf\n", 18[0000000000451587] write(1, "You entered: asdf\n", 18) = 18
+) = 18
+[0000000000451587] write(1, "\n", 1[0000000000451587] write(1, "\n", 1)    = 1
+)    = 1
+[0000000000451587] write(1, "Access denied\n", 14[0000000000451587] write(1, "Access denied\n", 14) = 14
+) = 14
+[0000000000450d26] exit_group(0[0000000000450d26] exit_group(0)        = ?
+)        = ?
+[????????????????] +++ exited with 0 +++
+[????????????????] +++ exited with 0 +++

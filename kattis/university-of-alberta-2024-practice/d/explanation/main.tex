@@ -1,0 +1,50 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+% Well I thought it would be an interesting problem before I actually solved it
+% but it's actually rather easy bruh
+\section*{Fun Kattis Math Problem}
+
+\begin{chirpbox}
+\begin{problem}
+    Define the following function \( g(n) \) to be
+    \[
+        g(n) = \{ g(k) \colon 0 \le k < n \}
+    .\]
+    where \( g(0) = \{\} \).
+
+    \vspace{0.3cm}
+
+    Define \( f(n) \) to be the number of braces and commas required to write out \( g(n) \). Derive a closed form expression for \( f(n) \) (i.e. a form that is computable in \( O(1) \) time).
+\end{problem}
+\end{chirpbox}
+
+\begin{solution}
+    We shall start with the obvious: we shall decompose \( f(n) \) into the sum of the number braces and the number of the commas, and then we shall derive a recurrence for both of them. In particular, write
+    \[
+        f(n) = 2 b(n) + c(n)
+    ,\]
+    where \( b(n) \) is the number of open brackets and \( c(n) \) the number of commas.
+
+    We shall start with deriving a closed form for \( b(n) \). Observe that
+    \[
+        b(n) = 1 + \sum_{k = 0}^{n - 1} b(k), \quad b(0) = 1
+    .\]
+    This then tells us that \( b(n) = 2^n \).
+
+    For \( c(n) \), we have that
+    \[
+        c(n) = n - 1 + \sum_{k = 0}^{n - 1} c(k), \quad c(0) = c(1) = 0
+    .\]
+    This then tells us that \( c(n) = 2^{n - 1} - 1 \) for \( n \ge 1 \).
+
+    So our final answer is simply
+    \[
+        f(0) = 2, \quad f(n) = 2^{n + 1} + 2^{n-1} - 1
+    \]
+\end{solution}
+
+\end{document}

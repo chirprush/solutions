@@ -1,0 +1,4 @@
+Address of the write call:
+0000000000451587
+
+The plan is to step through the program until it sets like the register for determining whether the password is correct and then overriding it to true to get the flag
