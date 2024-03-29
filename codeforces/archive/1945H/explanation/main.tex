@@ -1,0 +1,28 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{Codeforces Problem 1945H}
+
+\begin{chirpbox}
+    \begin{problem}
+        Given an array \( a \) and an integer \( x \), determine (if one
+        exists) a pair of elements \( (a_i, a_j) \) such that \( \gcd{(a_i,
+        a_j)} \) is strictly greater than \( x + \bigoplus_{k \ne i, j} a_k \),
+        where \( \oplus \) denotes bitwise AND.
+    \end{problem}
+\end{chirpbox}
+
+\begin{solution}
+    We shall inspect the first obvious solution path, which is determining the
+    maximum value of the gcd over all pairs. More specifically, we wish to know whether there exists an array such that
+    \begin{itemize}
+        \item For any pair where the gcd is maximized, the bitwise AND of the remaining elements is not lesser and
+        \item For some pair where the gcd is not maximized, the bitwise AND of the remaining elements is lesser
+    .\end{itemize}
+    We conjecture, however, that such an array does not exist.
+\end{solution}
+
+\end{document}

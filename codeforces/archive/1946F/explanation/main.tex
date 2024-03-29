@@ -1,0 +1,76 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{Codeforces Problem 1946F}
+
+\begin{chirpbox}
+    \begin{problem}
+        Given a permutation of length \( n \) and for \( q \) queries
+        consisting of integers \( l, r \), determine the number of sorted
+        sequences of indices \( t_1, t_2, \ldots, t_k \) for \( k \ge 1 \) such
+        that each \( t_i \) lies between \( l \) and \( r \), and \( a_{t_i} \)
+        divides \( a_{t_{i+1}} \).
+    \end{problem}
+\end{chirpbox}
+
+\begin{solution}[\textcolor{red}{Incorrect}]
+    We shall start by precomputing some helpful variables (the time
+    complexities for these shall be verified later).
+    \begin{itemize}
+        \item Let \( \textsf{starts}[i] \) denote the number of sequences that
+            start with \( i \).
+        \item Let \( \textsf{ends}[i] \) denote the number of sequences that
+            end with \( i \).
+        \item Let \( \textsf{starts\_prefix}[i] \) be the prefix of \(
+            \textsf{starts} \) and \( \textsf{ends\_prefix} \) the prefix of \(
+            \textsf{ends} \). In other words,
+        \begin{align*}
+            \textsf{starts\_prefix}[i] &= \sum_{j \le i} \textsf{starts}[j], \\
+            \textsf{ends\_prefix}[i] &= \sum_{j \le i} \textsf{ends}[j]
+        .\end{align*}
+    \end{itemize}
+    Once we have these arrays precomputed, we may easily determine the number
+    of sequences that satisfy our conditions. For a given interval of indices
+    \( l, r \), the answer is
+    \[
+        (\textsf{starts\_prefix}[r] - \textsf{starts\_prefix}[l-1]) - (\textsf{ends\_prefix}[n] - \textsf{ends\_prefix}[r])1
+    .\]
+    It is now sufficient to determine a method to compute \( \textsf{starts} \)
+    and \( \textsf{ends} \) in sufficient time.
+
+    We shall start by determining \( \textsf{starts} \). We find this rather
+    simply by iterating backwards (note that the order of this is important)
+    for each \( a_i \) and checking the positions of all multiples of \( a_i \)
+    to see if they lie in strictly greater indices and then adding path counts
+    accordingly. More formally,
+    \[
+        \textsf{starts}[i] = 1 + \sum_{\substack{a_i \mid a_j, \\ j > i}} \textsf{starts}[j]
+    .\]
+
+    One can verify that this runs in sufficient time as
+    \[
+        \sum_{i = 1}^{n} \left\lfloor \frac{n}{i} \right\rfloor = O(n \log{n})
+    .\]
+
+    The computation of the \( \textsf{ends} \) array is slightly different, and this asymmetry owes itself to the computational differences in finding divisors as opposed to the simpler multiples. Thus, we must take a different approach. We have that
+    \[
+        \textsf{ends}[i] = 1 + \sum_{\substack{a_j \mid a_i, \\ j < i}} \textsf{ends}[j]
+    .\]
+    Iterating over each value of \( i \) linearly would result in us having to factor each \( a_i \), but luckily we can simply over \( j \), resulting in another \( O(n \log{n}) \) pass over the array.
+
+    It actually appears that this solution is incomplete and incorrect, as
+storing the starting path and ending path prefix counts does not allow one to
+uniquely determine all paths (the equation given above for the answer in terms
+of the prefixes is obviously wrong after more thought is given). Another
+solution path will have to be attempted.
+
+    This being said, it is likely that the true solution follows a similar path, especially with the \( O(n \log{n}) \) computation times.
+\end{solution}
+
+\begin{solution}
+\end{solution}
+
+\end{document}

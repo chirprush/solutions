@@ -1,0 +1,48 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{Codeforces Problem 1950F}
+
+\begin{chirpbox}
+    \begin{problem}
+        Given integers \( a, b, c \), determine whether it is possible to create a rooted tree (if it exists) with \( a + b + c \) vertices where
+        \begin{itemize}[itemsep=0pt]
+            \item \( a \) vertices have \( 2 \) children,
+            \item \( b \) vertices have \( 1 \) child, and
+            \item \( c \) vertices have no no children.
+        \end{itemize}
+    \end{problem}
+\end{chirpbox}
+
+\begin{solution}
+    Observe that we may treat the \( b \) and \( c \) vertices very similarly. That is to say, the tree would have almost the same structure we were to create a tree with only the \( a \) and \( c \) vertices, and then disperse the \( b \) to be heads of the \( c \) vertices (although since we're minimizing the height potentially this might not be doable).
+
+    Note: in theory we have the time to actually construct the tree, which might be required.
+
+    Our first order of business should be verifying whether a tree is actually possible to construct. Let \( P (a, b, c) \) denote the proposition that a tree with \( a, b, c \) vertices is constructable. We can make our first observation a bit more rigorous by stating the following.
+    \begin{claim}
+        \( P(a, b, c) \) holds iff \( P(a, 0, c) \).
+    \end{claim}
+    \begin{proof}
+        This holds trivially from a deleting argument.
+    \end{proof}
+    Now the problem simplifies, as we only need to distribute two kinds of vertices. We shall now find (hopefully) sharp conditions for \( a,c \) on whether the tree is constructible:
+    \begin{claim}
+        A tree is constructable iff \( a + 1 = c \).
+    \end{claim}
+    \begin{proof}
+        This follows from an additive argument.
+    \end{proof}
+    This is actually quite a bit simpler than I thought wow. In order to now find the minimum height for \( a, b, c \), it suffices to find an arrangement that minimizes the depths of each (leaf?) node for \( a, 0, c \), and then we can probably use a linear algorithm to distribute the \( b \) nodes so that the maximum depth is correctly minimized.
+
+    Observe that if we want to minimize the height of the tree, we should make close to balanced. If we do so, then we can determine the depths of the nodes using some simple math. That is to say, we have that for some depth \( d \).
+    \[
+        2^d - 1 \le a \le 2^{d + 1} - 1 \\
+    ,\]
+    so \( d = \lfloor \log_2{(a + 1)} \rfloor = \lfloor \log_2{c} \rfloor \). Thus there will be \( 2c - 2^{d + 1} \) leafs with depth \( d + 1 \) and \( 2^{d+1} - c \) leafs with depth \( d \). With this in mind, we can disperse the \( b \) vertices accordingly towards the leaves in a greedy fashion.
+\end{solution}
+
+\end{document}

@@ -1,0 +1,33 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{USACO Open 2024 Problem 1}
+
+I really want to get this problem at the very least.
+
+\begin{observation}
+    Perhaps fixing the preference order to be like sorted may be enough (we certainly don't want to try all outcomes) so then we can like may exploit the symmetry somewhere idk. For example:
+
+    Suppose that at some time \( T \) we have that \( M \) farmers finish at the same time. We then delegate the next \( M \) open cows in order of the farmers. Thus, while any of next \( M \) cows could be interviewed with any of the next \( M \) cows. What happens after that? Well we know that we can treat any of the \( M \) farmers that opened up to be synonymous with each other so I think a set may actually just work. Or wait maybe it doesn't: we can have a disjoint set of farmers off finishing at the same time there.
+
+    Perhaps this is a graph problem then? We can add an edge between farmers if like they're bound by this symmetery. Ok ok that is doable perchance.
+\end{observation}
+
+\begin{observation}
+    Erm how should I code this (more specifically the brute force part)? Oh boy my mind is not working right now. I need to keep track of the interview times, the free interviewers, and the interviewers currently working.
+
+    We shall repeat the following steps until we can go no more (when should that be?).
+    \begin{enumerate}[topsep=0pt]
+        \item Assign at the current time all farmers that are free
+        \item Advance formward in time to the next critical time (How?)
+        \item Check if multiple farmers are freed at this time and add those to the graph. Add all finished farmers back to the free set
+    \end{enumerate}
+\end{observation}
+
+\begin{solution}
+\end{solution}
+
+\end{document}

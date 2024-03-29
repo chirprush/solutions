@@ -1,0 +1,32 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{Codeforces Problem 1948F}
+
+\begin{chirpbox}
+    \begin{problem}
+        Suppose you have \( n \) bags, with the \( i^{\text{th}} \) bag containing \( a_i \) gold coins and \( b_i \) silver coins. We give gold coins a value of \( 1 \) and silver coins a value of \( 0 \) or \( 1 \) independently with probability \( 1/2 \). For indices \( l, r \), calculate the probability that bags \( l \) through \( r \) have a greater value the total value in all other bags.
+    \end{problem}
+\end{chirpbox}
+
+\begin{solution}
+    In terms of efficient computation, there's a few things we can precompute (actually I'm probably missing something that drastically speeds up the solution and it's likely related to the linearity of probabilities or something, so check into this later):
+    \begin{itemize}
+        \item Prefixes for gold and silver coins.
+        \item The total number of gold coins and silver coins.
+    \end{itemize}
+    In doing so, we can calculate the number of gold and silver coins in the selected bags and the number in the non-selected bags. Define the random variables \( V_S \) and \( V_N \) to be the values of the selected and non-selected bags respectively. We can further decompose these random variables into
+    \[
+        V_S = G_S + S_S, \qquad V_N = G_N + S_N
+    ,\]
+    where \( G \) and \( S \) are the values from the gold and silver coins respectively (note that \( G_S, G_N \) are constants and not random variables). Since we also have that
+    \[
+        P(V_S > V_N) = P(V_S - V_N > 0)
+    ,\]
+    we are motivated to look at the difference of random variables.
+\end{solution}
+
+\end{document}
