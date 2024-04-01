@@ -22,3 +22,6 @@ Solutions in Mind:
 https://codeforces.com/problemset/problem/1884/C
 http://usaco.org/index.php?page=viewproblem2&cpid=1353
 https://dmoj.ca/problem/mccc6s3
+
+Explanations:
+yukicoder/archive/2663/
