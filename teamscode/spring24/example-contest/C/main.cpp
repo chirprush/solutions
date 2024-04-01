@@ -32,8 +32,33 @@ int main() {
     int n;
     std::cin >> n;
 
-    std::vector<int> a(n);
-    std::vector<int> equiv(n);
+    std::vector<int> a;
+    std::vector<int> equiv(n+1);
+
+    read_some(a, n);
+
+    std::vector<int> divisors;
+
+    for (int i = 1; i <= (int)std::round(std::sqrt(n)); i++) {
+        if (n % i == 0) {
+            divisors.push_back(i);
+            divisors.push_back(n / i);
+        }
+    }
+
+    for (int divisor : divisors) {
+        equiv[divisor] = a[0];
+        int pos = divisor % n;
+
+        while (pos != 0) {
+            equiv[divisor] += a[pos];
+            pos = (pos + divisor) % n;
+        }
+    }
+
+    for (int i = 1; i <= n; i++) {
+        std::cout << equiv[std::__gcd(i, n)] << std::endl;
+    }
 
     return 0;
 }

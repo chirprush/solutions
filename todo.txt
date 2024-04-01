@@ -10,6 +10,8 @@ https://codeforces.com/contest/1932/problem/F
 https://codeforces.com/contest/1902/problem/D
 https://codeforces.com/contest/1902/problem/E
 https://codeforces.com/contest/1857/problem/E
+https://spring24.teamscode.org/contest/3/problem/G
+https://projecteuler.net/problem=884
 
 Prefix Sums:
 https://codeforces.com/contest/1826/problem/D
