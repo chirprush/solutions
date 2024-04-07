@@ -12,11 +12,12 @@ https://codeforces.com/contest/1902/problem/E
 https://codeforces.com/contest/1857/problem/E
 https://spring24.teamscode.org/contest/3/problem/G
 https://projecteuler.net/problem=884
+https://yukicoder.me/problems/no/3109
 
 Prefix Sums:
 https://codeforces.com/contest/1826/problem/D
 https://codeforces.com/contest/1398/problem/C
-https://atcoder.jp/contests/abc164/tasks/abc164_d (Challenge)
+https://atcoder.jp/contests/abc164/tasks/abc164_d
 
 Solutions in Mind:
 https://codeforces.com/problemset/problem/1884/C
