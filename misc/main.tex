@@ -1,0 +1,54 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{Miscellaneous Problems}
+
+\begin{chirpbox}
+    \begin{problem}[MathDash Round 3 Silver \#8]
+        Draw triangle \( \triangle ABC \) with side lengths \( AB = 160, BC = 170, CA = 180 \). Point \( P \) is inside triangle \( \triangle ABC \) such that \( \angle PAB = \angle PAC \) and \( \angle ABC = 90^\circ \). If \( M \) is the midpoint of \( BC \), find \( PM \).
+    \end{problem}
+\end{chirpbox}
+
+\begin{solution}
+    We can first make a few natural simplifying observations about the angle conditions on \( P \):
+    \begin{itemize}
+        \item Let \( E \) denote the intersection of the angle bisector of \( \angle BAC \) and \( BC \). By the first condition, \( P \) lies on the angle bisector of \( \angle BAC \) and thus on \( AE \).
+        \item Let \( O \) be the midpoint of \( AB \) and let \( \omega \) be the circle centered \( O \). Then by the second angle condition, \( P \) lies inside \( \triangle ABC \) and on \( \omega \).
+    \end{itemize}
+
+    Combining these, we get that \( P = AE \cap OM \). Inspired by the diagram, we make the following claim:
+    \begin{claim}
+        We have that \( O, P, M \) are collinear.
+    \end{claim}
+    \begin{proof}
+        To prove this, we shall use a bit of coordinate geometry, choosing \( A \) to be the origin. This tells us that
+        \[
+            O = (80 \cos\alpha, 80 \sin\alpha )
+        ,\]
+        where we have denoted \( \angle BAC \) as \( \alpha \) for convenience.
+
+        Since \( OM \) is obviously parallel to \( AC \), we see that proving \( P \) lies on \( OM \) is equivalent to showing that
+        \[
+            P = (80 \cos\alpha + 80, 80 \sin\alpha) = (80 (1 + \cos\alpha), 80 \sin\alpha)
+        .\]
+        Since the RHS is guaranteed to fall on \( \omega \) it suffices to then show that \( P \) lies on the angle bisector \( AM \). Equivalently
+        \begin{align*}
+            \tan(\alpha / 2) &= \frac{\sin \alpha}{1 + \cos \alpha} \\
+            \frac{1}{\cos^2 (\alpha / 2)} - 1 &= \frac{1 - \cos^2 \alpha}{(1 + \cos \alpha)^2} \\
+            \frac{2}{\cos \alpha + 1} -1 &= \frac{1 - \cos^2 \alpha}{(1 + \cos \alpha)^2}
+        .\end{align*}
+        Additionally, since the Law of Cosines tells us that
+        \begin{align*}
+            BC^2 &= AB^2 + AC^2 - 2(AB)(AC) \cos \alpha \\
+            \implies \cos \alpha &= \frac{AB^2 + AC^2 - BC^2}{2(AB)(AC)} = \frac{97}{192}
+        .\end{align*}
+        We can substitute this into the previous equation and verify that it does in fact hold, thus verifying the proof.
+    \end{proof}
+
+    Now we can finish trivially, as \( \triangle OBM \sim \triangle ABC \) and \( M \) is the midpoint of \( BC \). This tell us that \( OM = \frac{1}{2} AC = 90 \) and since \( OP + PM = OM \) and \( OP = 80 \), \( PM = \boxed{10} \).
+\end{solution}
+
+\end{document}

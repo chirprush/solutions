@@ -1,0 +1,38 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{USAMO 2004 Solutions}
+
+\setcounter{pnum}{1}
+
+\begin{chirpbox}
+    \begin{problemnum}
+        Suppose \( a_1, a_2, \ldots, a_n  \) are integers whose greatest common divisor is \( 1 \). Let \( S \) be a set of integers with the following properties:
+        \begin{enumerate}[label=\textbf{\alph*.}]
+            \item For each \( a_i \), \( a_i \in S \).
+            \item For each pair \( (a_i, a_j) \) (where the indices are not neessarily distinct), \( a_i - a_j \in S \).
+            \item For each pair \( (x, y) \) where \( x, y \in S \), \( x + y \in S \implies x - y \in S \).
+        \end{enumerate}
+    \end{problemnum}
+\end{chirpbox}
+
+\begin{solution}
+    We may first easily prove that \( 0, 1 \in S \).
+    \begin{itemize}
+        \item For the first case of \( 0 \in S \), this trivially holds because we can take \( a_1 - a_1 = 0 \), which is in \( S \) by the second rule.
+        \item For the second case of \( 1 \in S \), we may see that, sincethe greatest common divisor of all elements is \( 1 \), there must exist an odd element in \( a_1, a_2, \ldots, a_n \), which is also in \( S \) by the first condition. We shall write this odd number in the form \( 2k + 1 \) and use the third condition to see that since \( (k + 1) + k = 2k + 1 \in S \), then \( (k + 1) - k = 1 \in S \). \textcolor{red}{Wait no this doesn't work because you can't know that \( k, k + 1 \in S \) whoops.}
+    \end{itemize}
+
+    We shall also show that \( x \in S \implies -x \in S \). This follows trivially from the fact that \( x = 0 + x \implies 0 - x = -x \in S \).
+    
+    From here, finishing is trivial, as we may induct up. More specifically, we have that \( x \in S \implies x + 2 \in S \), and since we have both \( 0 \) and \( 1 \) in \( S \), this reaches all integers after reflection (because \( x \in S \implies -x \in S \)). We may prove this proposition by observing that
+    \[
+        x = (x + 1) + (-1) \in S \implies (x + 1) - (-1) = x + 2 \in S
+    ,\]
+    which finishes the proof when plugging in \( x = 0, 1, \ldots \) and so on.
+\end{solution}
+
+\end{document}

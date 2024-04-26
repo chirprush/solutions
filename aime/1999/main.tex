@@ -1,0 +1,82 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{1999 AIME Solutions}
+
+\begin{chirpbox}
+    \begin{problemnum}
+        Find the smallest prime that is the fifth term of an increasing arithmetic sequence, all four preceding terms also being prime.
+    \end{problemnum}
+\end{chirpbox}
+
+\begin{solution}
+    Intuitively, we know that the answer surely cannot be all that large, so we shall list out some primes:
+    \[
+        2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59
+    .\]
+    We obviously know that the sequence doesn't start with \( 2 \) and that the common difference must be even. Literally brute forcing for the first couple primes, we see that the sequence \( 5, 11, 17, 23, 29 \) works, so our answer is \( \boxed{029} \)
+\end{solution}
+
+\begin{chirpbox}
+    \begin{problemnum}
+        Consider the parallelogram with vertices
+        \[
+            (10, 45), (10, 114), (28,
+        153), (28, 84)
+        .\]
+        A line through the origin cuts this figure into two
+        congruent polygons. The slope of this line is \( m/n \), where \( m \)
+        and \( n \) are relatively prime positive integers. Find \( m + n \).
+    \end{problemnum}
+\end{chirpbox}
+
+\begin{solution}
+    We assert that the only lines that cut the figure into two congruent polygons are ones that pass through the centroid of the parallelogram. Since we know that the line passes through \( (0,0) \) by definition, this uniquely determines our line. Observe that the centroid is located at
+    \begin{align*}
+        \textsf{centroid} &= \left(\frac{10 + 10 + 28 + 28}{4}, \frac{45 + 114 + 153 + 84}{4} \right) \\
+        &= \left( 19, 99 \right)
+    .\end{align*}
+    Thus, our answer is \( 19 + 99 = \boxed{118} \).
+\end{solution}
+
+\setcounter{pnum}{6}
+
+\begin{chirpbox}
+    \begin{problemnum}
+        There is a set of \( 1000 \) switches, each of which has four positions, called \( A, B, C, \) and \( D \). When the position of any switch changes, it is only from \( A \) to \( B \), \( B \) to \( C \), \( C \) to \( D \), or \( D \) to \( A \). The switches are labeled with \( 1000 \) different integers \( 2^x 3^y 5^z \), where \( x, y, z \in \{0, 1, 2, \ldots, 9 \} \). At step \( i \) of a \( 1000 \)-step process, the \( i \)th switch is advanced one step, and so are all the other switches whose labels divide the label on the \( i \)th switch. After step \( 1000 \) has been completed, how many switches will be in position \( A \)?
+    \end{problemnum}
+\end{chirpbox}
+
+\begin{solution}
+    Observe that the condition given in the problem can be simplified to saying that, for any label \( \textsf{label} = 2^x 3^y 5^z \), we increment the positions of every divisor it has (including itself). This is the same as incrementing the position of the switch corresponding to \( \textsf{label} \) by the number of multiples it has in the set, which is \( (10-x)(10-y)(10-z) \). Any switch in position \( A \) will have this product be \( 0 \) modulo \( 4 \), so it suffices to count these tuples now. To do this, we can use complementary counting to see that our desired answer \( a \) is
+    \begin{align*}
+        a = 10^3 &- (\textrm{count of tuples where 2 doesn't divide label}) \\ 
+        &- (\textrm{count of tuples where 2 does divide label but 4 doesn't})
+    .\end{align*}
+    For the first count, we may see that since \( (10-x) \equiv 1 \pmod{2} \) for \( x \in \{1, 3, 5, 7, 9\} \) there are \( 5^3 = 125 \) such tuples.
+
+    For the second count, we may choose for one tuple \( (10 - x) \equiv 2 \pmod{4} \), which changes the set of possible values to \( x \in \{0, 4, 8\} \). This tells us that there are \( 3 \cdot 3 \cdot 5 \cdot 5 = 225 \) such tuples.
+
+    In total, this tells us that the answer is \( 1000 - 125 - 225 = \boxed{650} \) switches on position \( A \) after all steps have been completed.
+\end{solution}
+
+\setcounter{pnum}{12}
+
+\begin{chirpbox}
+    \begin{problemnum}
+        Forty teams play a tournament in which every team plays every other team exactly once. No ties occur, and each team has an equal chance of winning any game it plays. The probability that no two teams win the same number of games is \( m/ n \), where \( m \) and \( n \) are relatively prime positive integers. Find \( \log_2 n \).
+    \end{problemnum}
+\end{chirpbox}
+
+\begin{solution}
+    The only possible listing of unique game wins for each team that could possibly occur is \( 0, 1, \dots, 39 \). Since we are guaranteed that the probabilitiy is nonzero, we know for certain that this must be an achievable arrangement, and due to how the graph works, it is uniquely defined. Notice that there are \( 40! \) ways to deal out the wins to the teams and \( 2^{\binom{40}{2}} \) ways to choose how the matches all play out. It now suffices to find the simplified denominator, so we may inspect the powers of \( 2 \) that divide \( 40! \). Using Legendre's formula, we have that
+    \[
+        \nu_2 (40!) = \left\lfloor \frac{40}{2} \right\rfloor + \left\lfloor \frac{40}{4} \right\rfloor + \left\lfloor \frac{40}{8} \right\rfloor + \left\lfloor \frac{40}{16} \right\rfloor + \left\lfloor \frac{40}{32} \right\rfloor = 38
+    .\]
+    Thus, our answer is \( 20 \cdot 39 - 38 = \boxed{742} \).
+\end{solution}
+
+\end{document}
