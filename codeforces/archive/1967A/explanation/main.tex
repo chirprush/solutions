@@ -1,0 +1,35 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{Codeforces Problem 1967A}
+
+\begin{chirpbox}
+    \begin{problem}
+        Let \( n \) be some fixed natural number. We are given frequency counts of integers \( 1 \) to \( n \) as well as the choice of \( k \) more counts.
+
+        \vspace{0.3cm}
+
+        Let the \textit{score} of some arrangement of numbers denote the number of subarrays of the arrangement that are a permutation of the numbers \( 1 \) to \( n \) and let \( \textsf{counts} \) be some arrangement of the given and chosen numbers as mentioned above. Find the maximum score of \( \textsf{counts} \) for which it is optimally chosen.
+    \end{problem}
+\end{chirpbox}
+
+\begin{solution}
+    While I shall not try to prove that it is the most optimal as that would take a lot of thinking, we have decent intuition to believe that a sliding window technique achieves the highest score. Let \( c[i] \) denote the frequency counts given to us and \( s[i] \) denote the additional \( k \) chosen counts. We then have the following claim.
+
+    \begin{claim}
+        Let the optimal maximal minimal shared value obtained by choice of \( s[i] \) be
+        \[
+            \textsf{value} = \max_{s[i]} \min_{i} \Bigl( c[i] + s[i] \Bigr)
+        .\]
+        We then have that the maximal score is
+        \[
+            1 + (n-1)(\textsf{value}) + \varepsilon
+        ,\]
+        where \( \varepsilon \) is a residual term that may range from \( 0 \) to \( 2n - 1 \) inclusive.
+    \end{claim}
+\end{solution}
+
+\end{document}
