@@ -45,7 +45,7 @@ int main() {
 
     ll score = 0;
 
-    std::vector<std::vector<ll>> beauties(m); // Jennifer fr
+    std::vector<std::vector<ll>> beauties(m);
 
     for (int i = 0; i < n; i++) {
         ll t, s;
