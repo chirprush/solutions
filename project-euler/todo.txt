@@ -1,0 +1,2 @@
+Problem 650:
+    - Literally just like O(n^2 log n) where you spam legendre's formula and then geometric series
