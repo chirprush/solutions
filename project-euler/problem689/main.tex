@@ -1,0 +1,68 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{Project Euler: Problem 689}
+
+\begin{chirpbox}
+    \begin{problem}
+        Let \( X_1, X_2, X_3, \ldots \) be a sequence of independent and identically distributed random variables with equal probability of being \( 0 \) or \( 1 \). Define \( S \) to be
+        \[
+            S := \sum_{i = 1}^{\infty} \frac{X_i}{i^2}
+        .\]
+        Find the probability that \( S > 0.5 \) to \( 8 \) digits of precision.
+    \end{problem}
+\end{chirpbox}
+
+\begin{solution}[\textcolor{red}{Laplace Transforms}]
+    Define \( Y_i := X_i / i^2 \). We shall hope to use Laplace transforms to find some sort of usable form for the distribution of the infinite sum. Observe that. Let \( f_i(t) \) denote the pdf of \( Y_i \). Observe that
+    \begin{align*}
+        \mathcal{L} \{ f_i (t) \}(s) &= \int_{0}^{\infty} f_i(t) e^{-st} \, dt \\
+        &= \frac{1}{2} \int_{0}^{\infty} \Bigl( \delta (t) + \delta(t - 1/i^2) \Bigr) e^{-st} \, dt \\
+        &= \frac{1}{2} ( 1 + e^{-s/i^2} )
+    .\end{align*}
+    If we were to take the infinite product of these terms as \( i \) ranged from \( 1 \) to \( n \) and viewed the behavior as \( n \to \infty \), we would indeed obtain the desired distribution, but unfortunately, expanding and taking the inverse transform would be far too intractable. From foiling out the terms in the product, we arrive back at the problem of actually calculating the convolutions, with it only being rephrased in terms of expanded terms now.
+
+    This solution will not work. There is no free lunch.
+\end{solution}
+
+\begin{solution}[Normal Distribution? O\_O]
+    Once again define \( Y_i = X_i / i^2 \). We shall try to verify the Lyapunov condition to see whether the distribution of \( S \) converges to be a normal distribution. Recall the following statement of the Lyapunov CLT:
+    \begin{chirpbox}
+    \begin{theorem}[Lyapnuov CLT]
+        Suppose \( X_1, X_2, \ldots, X_n, \ldots \) is a sequence of independent random variables, each with finite expected value \( \mu_i \) and variance \( \sigma^2_i \), and let
+        \[
+            s_n^2 = \sum_{i = 1}^{n} \sigma_i^2
+        .\]
+        If we have that
+        \[
+            \lim_{n \to \infty} \frac{1}{s_n^3} \sum_{i = 1}^{n} E \left[ \left\lvert X_i - \mu_i \right\rvert^3 \right] = 0
+        ,\]
+        then we know that the sum of random variables converges in distribution to the normal distribution \( N(\mu, \sigma^2) \), where
+        \[
+            \mu = \sum_{i = 1}^{\infty} \mu_i, \quad \sigma^2 = \lim_{n \to \infty} s_n^2
+        .\]
+    \end{theorem}
+    \end{chirpbox}
+    Observe that, in the context of each \( Y_i \),
+    \[
+        \mu_i = \frac{1}{2i^2}, \quad \sigma_i^2 = \frac{1}{4i^4} 
+    .\]
+    This tells us that
+    \[
+        s^2 := \lim_{n \to \infty} s^2_n = \zeta (4) / 4
+    .\]
+    Meanwhile,
+    \[
+        \sum_{i = 1}^{\infty} E \left[ \left\lvert X_i - \mu_i \right\rvert^3 \right] = \sum_{i = 1}^{\infty} \frac{1}{8 i^6} = \zeta(6) / 8
+    .\]
+    Clearly, both of these are finite, so sadly the condition doesn't hold.
+\end{solution}
+
+\begin{solution}[The Boring But Intended Way?]
+    We shall devise an algorithm that goes casewise on each term of the sequence until the error reduces to something smaller than \( 1 \times 10^{-8} \). In theory, this means that we only have to look up to \( n = 10^4 \) at most. The algorithm must then at most \( O(n^2 \log n) \).
+\end{solution}
+
+\end{document}
