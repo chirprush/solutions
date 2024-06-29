@@ -1,6 +1,7 @@
 **/a.out
-**/bin/*.pdf
 **/bin/**
+!**/bin/
+!**/bin/*.pdf
 **/__pycache__
 **/__pycache__/**
 hpe-codewars/downloads/*
