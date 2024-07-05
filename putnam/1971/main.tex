@@ -1,0 +1,44 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{1971 Putnam Solutions}
+
+\begin{sidebox}
+    \begin{problem}[A2]
+        Find all polynomials \( f \) such that \( f(0) = 0 \) and \( f(x^2 + 1) = f(x)^2 + 1 \).
+    \end{problem}
+\end{sidebox}
+
+\begin{solution}
+    It's obvious that the polynomial \( f(x) := x \) works, and there don't seem to be any other obvious solutions, so we'll try and prove that this is the only such polynomial.
+
+    In experimenting with plugging in numbers, we see that \( f(x)^2 = f(-x)^2 \) and also the following chain of substitutions holds:
+    \begin{align*}
+        f(0^2 + 1) = f(1) &= f(0)^2 + 1 = 1 \\
+        f(1^2 + 1) = f(2) &= f(1)^2 + 1 = 2 \\
+        f(2^2 + 1) = f(5) &= f(2)^2 + 1 = 5 \\
+        &\vdots
+    \end{align*}
+    so it looks like we can construct infinitely many points such that \( f(x) = x \). If \( f \) were any function, this wouldn't help us prove anything, but (unless I'm being smooth-brained) since \( f \) is a polynomial, this actually pretty much just gives us the solution; we just have to formalize this notion. In particular,
+
+    \begin{lemma}
+        Fix some natural number \( M \). There exists at least \( M \) distinct values of \( x \) such that \( f(x) = x \).
+    \end{lemma}
+
+    \begin{proof}
+        We shall prove this with induction, with the base case of \( M = 1 \) being trivial, as \( f(0) = 0 \) is given.
+
+        Suppose we have at least \( M - 1 \) distinct values of \( x \) such that \( f(x) = x \) and that, in particular, \( t \) is the largest such value. We see that
+        \[
+            f(t^2 + 1) = f(t)^2 + 1 = t^2 + 1
+        ,\]
+        so clearly \( x = t^2 + 1 \) is a solution to \( f(x) = x \). Since \( t^2 + 1 > t \), this is a new unique solution. Thus, there are at least \( M \) distinct solutions.
+    \end{proof}
+
+    This now lets us finish. Suppose \( f \) is of degree at most \( k \) (\( f \) must be of finite degree, otherwise it wouldn't be a polynomial). Our lemma above allows us to say that there are \( k + 1 \) points such that \( f(x) = x \). Since \( k + 1 \) points define a polynomial and \( f(x) := x \) satisfies these conditions, this solution is unique, and \( f(x) \) is equivalent to \( x \).
+\end{solution}
+
+\end{document}
