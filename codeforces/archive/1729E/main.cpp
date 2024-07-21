@@ -28,6 +28,7 @@ void print_some(std::vector<T> &v) {
     std::cout << " ]" << std::endl;
 }
 
+// This doesn't work at all btw so come back to this later
 int main() {
     ll n = 1;
 
