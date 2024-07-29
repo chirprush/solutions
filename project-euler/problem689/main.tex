@@ -62,7 +62,13 @@
 \end{solution}
 
 \begin{solution}[The Boring But Intended Way?]
-    We shall devise an algorithm that goes casewise on each term of the sequence until the error reduces to something smaller than \( 1 \times 10^{-8} \). In theory, this means that we only have to look up to \( n = 10^4 \) at most. The algorithm must then at most \( O(n^2 \log n) \).
+    We shall devise an algorithm that goes casewise on each term of the sequence until the error reduces to something smaller than \( 1 \times 10^{-8} \). In theory, this means that we only have to look up to \( n = 10^4 \) at most. The algorithm must then be at most \( O(n^2 \log n) \).
+
+    Actually going casewise and even pruning the tree traversal still ends up being like \( O((1.6)^n) \), which is really bad, so honestly this might not be the solution.
+\end{solution}
+
+\begin{solution}[Integrals?]
+
 \end{solution}
 
 \end{document}
